@@ -11,12 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Explore\Log.h" />
     <ClInclude Include="Src\Explore.h" />
     <ClInclude Include="Src\Explore\Application.h" />
     <ClInclude Include="Src\Explore\Core.h" />
     <ClInclude Include="Src\Explore\Entrypoint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Explore\Log.cpp" />
     <ClCompile Include="Src\Explore\Application.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -68,6 +70,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExploreEngine\ThirdLib\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,6 +85,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExploreEngine\ThirdLib\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

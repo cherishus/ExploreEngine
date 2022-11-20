@@ -5,7 +5,6 @@ namespace Explore
 {
 	void Application::Run()
 	{
-		printf("Start Explore Engine!\n");
 		while (true);
 	}
 }

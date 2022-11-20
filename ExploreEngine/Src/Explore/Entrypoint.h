@@ -6,6 +6,9 @@ extern Explore::Application* Explore::CreateApplication();
 
 int main(int argc, char** argv)
 {
+	Explore::Log::Init();
+	EXPLORE_CORE_LOG(info, "Start Explore Engine!");
+
 	auto App = Explore::CreateApplication();
 	App->Run();
 	delete App;
