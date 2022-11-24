@@ -19,6 +19,11 @@
     <ClInclude Include="src\Explore\Log.h">
       <Filter>Explore</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Explore\Events\Event.h" />
+    <ClInclude Include="Src\Explore\Events\ApplicationEvent.h" />
+    <ClInclude Include="Src\Explore\Events\KeyEvent.h" />
+    <ClInclude Include="Src\Explore\Events\MouseEvent.h" />
+    <ClInclude Include="Src\enginepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Explore\Application.cpp">
@@ -27,5 +32,6 @@
     <ClCompile Include="src\Explore\Log.cpp">
       <Filter>Explore</Filter>
     </ClCompile>
+    <ClCompile Include="Src\enginepch.cpp" />
   </ItemGroup>
 </Project>

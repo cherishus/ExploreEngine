@@ -9,3 +9,5 @@
 #else
 	#error Explore only support Windows
 #endif //  EXPLORE_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << (x))

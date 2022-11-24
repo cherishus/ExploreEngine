@@ -18,21 +18,25 @@ project "ExploreEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "enginepch.h"
+	pchsource "enginepch.cpp"
+
 	files
 	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/Src/**.h",
+		"%{prj.name}/Src/**.cpp"
 	}
 
 	includedirs
 	{
+		"%{prj.name}/Src"
 		"%{prj.name}/ThirdLib/spdlog/include"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
-		systemversion "10.0.18362.0"
+		systemversion "latest"
 
 		defines
 		{
@@ -62,8 +66,8 @@ project "Sandbox"
 
 	files
 	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/Src/**.h",
+		"%{prj.name}/Src/**.cpp"
 	}
 
 	includedirs
@@ -80,7 +84,7 @@ project "Sandbox"
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
-		systemversion "10.0.18362.0"
+		systemversion "latest"
 
 		defines
 		{
