@@ -10,7 +10,7 @@ namespace Explore
 	public:
 		inline int GetKeycode() { return m_KeyCode; }
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryKeyboard | EventCategory::EventCategoryInput)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryKeyboard | (int)EventCategory::EventCategoryInput)
 	
 	protected:
 		KeyEvent(int Keycode) : m_KeyCode(Keycode) {}
@@ -25,7 +25,7 @@ namespace Explore
 
 		inline int GetRepeatCount() { return m_RepeatCount; }
 
-		std::string ToString()
+		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode << "(" << m_RepeatCount << ")";

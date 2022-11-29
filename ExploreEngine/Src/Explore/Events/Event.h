@@ -38,13 +38,13 @@ namespace Explore
 
 		bool Handled = false;
 
-		virtual EventType GetEventType() const = 0;
+		virtual EventType GetEventType() const { return EventType::None; }
 
-		virtual const char* GetName() const = 0;
+		virtual const char* GetName() const { return "Event"; }
 
-		virtual int GetCategoryFlags() const = 0;
+		virtual int GetCategoryFlags() const { return (int)EventCategory::None; }
 
-		virtual std::string ToString() const = 0;
+		virtual std::string ToString() const { return GetName(); }
 
 		bool IsInCategory(EventCategory category)
 		{

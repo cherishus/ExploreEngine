@@ -10,6 +10,11 @@ workspace "ExploreEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "ExploreEngine/ThirdLib/glfw/include"
+
+include "ExploreEngine/ThirdLib/glfw"
+
 project "ExploreEngine"
 	location "ExploreEngine"
 	kind "SharedLib"
@@ -29,8 +34,15 @@ project "ExploreEngine"
 
 	includedirs
 	{
-		"%{prj.name}/Src"
-		"%{prj.name}/ThirdLib/spdlog/include"
+		"%{prj.name}/Src",
+		"%{prj.name}/ThirdLib/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -41,7 +53,13 @@ project "ExploreEngine"
 		defines
 		{
 			"EXPLORE_PLATFORM_WINDOWS",
-			"EXPLORE_BUILD_DLL"
+			"EXPLORE_BUILD_DLL",
+			"EXPLORE_ENABLE_ASSERTS"
+		}
+
+		postbuildcommands
+		{
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
 
 	filter "configurations:Debug"

@@ -1,3 +1,6 @@
 [submodule "ExploreEngine/ThirdLib/spdlog"]
 	path = ExploreEngine/ThirdLib/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "glfw"]
+	path = glfw
+	url = https://github.com/TheCherno/glfw

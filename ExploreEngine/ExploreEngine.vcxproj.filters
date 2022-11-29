@@ -4,33 +4,59 @@
     <Filter Include="Explore">
       <UniqueIdentifier>{84E144E3-F0C0-C37E-F9D8-4E5565372AE0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Explore\Events">
+      <UniqueIdentifier>{E8304588-D4FE-388E-BD92-A9B4A9FF14F3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Explore.h" />
-    <ClInclude Include="src\Explore\Application.h">
+    <ClInclude Include="Src\Explore.h" />
+    <ClInclude Include="Src\Explore\Application.h">
       <Filter>Explore</Filter>
     </ClInclude>
-    <ClInclude Include="src\Explore\Core.h">
+    <ClInclude Include="Src\Explore\Core.h">
       <Filter>Explore</Filter>
     </ClInclude>
-    <ClInclude Include="src\Explore\Entrypoint.h">
+    <ClInclude Include="Src\Explore\Entrypoint.h">
       <Filter>Explore</Filter>
     </ClInclude>
-    <ClInclude Include="src\Explore\Log.h">
+    <ClInclude Include="Src\Explore\Events\ApplicationEvent.h">
+      <Filter>Explore\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Events\Event.h">
+      <Filter>Explore\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Events\KeyEvent.h">
+      <Filter>Explore\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Events\MouseEvent.h">
+      <Filter>Explore\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Log.h">
       <Filter>Explore</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Explore\Events\Event.h" />
-    <ClInclude Include="Src\Explore\Events\ApplicationEvent.h" />
-    <ClInclude Include="Src\Explore\Events\KeyEvent.h" />
-    <ClInclude Include="Src\Explore\Events\MouseEvent.h" />
+    <ClInclude Include="Src\Explore\Window.h">
+      <Filter>Explore</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="Src\enginepch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Explore\Application.cpp">
+    <ClCompile Include="Src\Explore\Application.cpp">
       <Filter>Explore</Filter>
     </ClCompile>
-    <ClCompile Include="src\Explore\Log.cpp">
+    <ClCompile Include="Src\Explore\Log.cpp">
       <Filter>Explore</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Src\enginepch.cpp" />
   </ItemGroup>

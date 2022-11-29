@@ -19,7 +19,7 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ExploreEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -77,27 +77,32 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;Explore_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;EXPLORE_ENABLE_ASSERTS;Explore_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Debug-windows-x86_64\ExploreEngine\ExploreEngine.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\ExploreEngine\ExploreEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\ExploreEngine\ExploreEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\ExploreEngine\ExploreEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;Explore_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;EXPLORE_ENABLE_ASSERTS;Explore_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -105,21 +110,25 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Release-windows-x86_64\ExploreEngine\ExploreEngine.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\ExploreEngine\ExploreEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\ExploreEngine\ExploreEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\ExploreEngine\ExploreEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;Explore_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;EXPLORE_ENABLE_ASSERTS;Explore_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -127,38 +136,42 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Dist-windows-x86_64\ExploreEngine\ExploreEngine.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\ExploreEngine\ExploreEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\ExploreEngine\ExploreEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\ExploreEngine\ExploreEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Explore.h" />
-    <ClInclude Include="src\Explore\Application.h" />
-    <ClInclude Include="src\Explore\Core.h" />
-    <ClInclude Include="Src\enginepch.h" />
-    <ClInclude Include="src\Explore\Entrypoint.h" />
+    <ClInclude Include="Src\Explore.h" />
+    <ClInclude Include="Src\Explore\Application.h" />
+    <ClInclude Include="Src\Explore\Core.h" />
+    <ClInclude Include="Src\Explore\Entrypoint.h" />
     <ClInclude Include="Src\Explore\Events\ApplicationEvent.h" />
     <ClInclude Include="Src\Explore\Events\Event.h" />
     <ClInclude Include="Src\Explore\Events\KeyEvent.h" />
     <ClInclude Include="Src\Explore\Events\MouseEvent.h" />
-    <ClInclude Include="src\Explore\Log.h" />
+    <ClInclude Include="Src\Explore\Log.h" />
+    <ClInclude Include="Src\Explore\Window.h" />
+    <ClInclude Include="Src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="Src\enginepch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Explore\Application.cpp" />
-    <ClCompile Include="Src\enginepch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">enginepch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">enginepch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">enginepch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\Explore\Log.cpp" />
+    <ClCompile Include="Src\Explore\Application.cpp" />
+    <ClCompile Include="Src\Explore\Log.cpp" />
+    <ClCompile Include="Src\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="Src\enginepch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="ThirdLib\glfw\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

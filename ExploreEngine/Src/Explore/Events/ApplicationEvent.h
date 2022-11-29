@@ -23,7 +23,7 @@ namespace Explore
 
 		EVENT_CLASS_TYPE(WindowResize)
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 
 	private:
 		unsigned int m_Width, m_Height;
@@ -34,9 +34,16 @@ namespace Explore
 	public:
 		WindowCloseEvent() = default;
 
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "WindowCloseEvent";
+			return ss.str();
+		}
+
 		EVENT_CLASS_TYPE(WindowClose)
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	};
 
 	class EXPLORE_API AppTickEvent : public Event
@@ -46,7 +53,7 @@ namespace Explore
 
 		EVENT_CLASS_TYPE(AppTick)
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	};
 
 	class EXPLORE_API AppUpdateEvent : public Event
@@ -56,7 +63,7 @@ namespace Explore
 
 		EVENT_CLASS_TYPE(AppUpdate)
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	};
 
 	class EXPLORE_API AppRenderEvent : public Event
@@ -66,6 +73,6 @@ namespace Explore
 
 		EVENT_CLASS_TYPE(AppRender)
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	};
 }

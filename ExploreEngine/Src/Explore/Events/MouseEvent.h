@@ -14,7 +14,7 @@ namespace Explore
 
 		inline float GetY() { return m_MouseY; }
 
-		std::string ToString()
+		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
@@ -23,7 +23,7 @@ namespace Explore
 
 		EVENT_CLASS_TYPE(MouseMoved)
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryMouse | (int)EventCategory::EventCategoryInput)
 
 	private:
 		float m_MouseX, m_MouseY;
@@ -47,7 +47,7 @@ namespace Explore
 
 		EVENT_CLASS_TYPE(MouseScrolled)
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryMouse | (int)EventCategory::EventCategoryInput)
 	
 	private:
 		float m_XOffset, m_YOffset;
@@ -58,7 +58,7 @@ namespace Explore
 	public:
 		inline int GetMouseButton() const { return m_Button; }
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput | EventCategory::EventCategoryMouseButton)
+		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryMouse | (int)EventCategory::EventCategoryInput | (int)EventCategory::EventCategoryMouseButton)
 	
 	protected:
 		MouseButtonEvent(int button) : m_Button(button) {}
