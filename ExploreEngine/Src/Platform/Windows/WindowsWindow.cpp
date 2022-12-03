@@ -5,6 +5,8 @@
 #include "Explore/Events/ApplicationEvent.h"
 #include "Explore/Events/KeyEvent.h"
 #include "Explore/Events/MouseEvent.h"
+#include "glad/glad.h"
+//ExploreEngine has already defined "GLFW_INCLUDE_NONE", ensure glfw not include __gl_h_, otherwise glad.h is failed to compile
 
 namespace Explore
 {
@@ -49,6 +51,8 @@ namespace Explore
 		//create window
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		EXPLORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

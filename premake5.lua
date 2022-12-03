@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "ExploreEngine/ThirdLib/glfw/include"
+IncludeDir["GLAD"] = "ExploreEngine/ThirdLib/glad/include"
 
 include "ExploreEngine/ThirdLib/glfw"
+include "ExploreEngine/ThirdLib/glad"
 
 project "ExploreEngine"
 	location "ExploreEngine"
@@ -36,12 +38,14 @@ project "ExploreEngine"
 	{
 		"%{prj.name}/Src",
 		"%{prj.name}/ThirdLib/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
 	}
 
 	links
 	{
 		"GLFW",
+		"GLAD",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "ExploreEngine"
 		{
 			"EXPLORE_PLATFORM_WINDOWS",
 			"EXPLORE_BUILD_DLL",
-			"EXPLORE_ENABLE_ASSERTS"
+			"EXPLORE_ENABLE_ASSERTS",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands

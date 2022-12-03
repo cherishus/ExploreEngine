@@ -37,6 +37,12 @@
     <ClInclude Include="Src\Explore\Events\MouseEvent.h">
       <Filter>Explore\Events</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Explore\Layer.h">
+      <Filter>Explore</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\LayerStack.h">
+      <Filter>Explore</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Explore\Log.h">
       <Filter>Explore</Filter>
     </ClInclude>
@@ -47,11 +53,15 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Src\enginepch.h" />
-    <ClInclude Include="Src\Explore\Layer.h" />
-    <ClInclude Include="Src\Explore\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Application.cpp">
+      <Filter>Explore</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Explore\Layer.cpp">
+      <Filter>Explore</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Explore\LayerStack.cpp">
       <Filter>Explore</Filter>
     </ClCompile>
     <ClCompile Include="Src\Explore\Log.cpp">
@@ -61,7 +71,5 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Src\enginepch.cpp" />
-    <ClCompile Include="Src\Explore\Layer.cpp" />
-    <ClCompile Include="Src\Explore\LayerStack.cpp" />
   </ItemGroup>
 </Project>
