@@ -64,14 +64,17 @@ project "ExploreEngine"
 
 	filter "configurations:Debug"
 		defines "Explore_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "Explore_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "Explore_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"

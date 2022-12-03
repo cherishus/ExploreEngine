@@ -18,6 +18,25 @@ namespace Explore
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		EXPLORE_CORE_LOG(trace, "App Event: {0}", e);
+
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		{
+			(*(--it))->OnEvent(e);
+			if (e.Handled)
+			{
+				break;
+			}
+		}
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* layer)
+	{
+		m_LayerStack.PushOverLay(layer);
 	}
 
 	bool Application::OnWindowClose(Event& e)
@@ -30,6 +49,10 @@ namespace Explore
 	{
 		while (m_Running)
 		{
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnUpdate();
+			}
 			m_Window->OnUpdate();
 		}
 	}
