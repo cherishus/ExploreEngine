@@ -13,9 +13,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "ExploreEngine/ThirdLib/glfw/include"
 IncludeDir["GLAD"] = "ExploreEngine/ThirdLib/glad/include"
+IncludeDir["ImGui"] = "ExploreEngine/ThirdLib/imgui"
 
 include "ExploreEngine/ThirdLib/glfw"
 include "ExploreEngine/ThirdLib/glad"
+include "ExploreEngine/ThirdLib/imgui"
 
 project "ExploreEngine"
 	location "ExploreEngine"
@@ -39,13 +41,15 @@ project "ExploreEngine"
 		"%{prj.name}/Src",
 		"%{prj.name}/ThirdLib/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 

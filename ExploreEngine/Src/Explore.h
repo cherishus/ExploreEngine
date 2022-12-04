@@ -4,6 +4,7 @@
 #include "Explore/Core.h"
 #include "Explore/Application.h"
 #include "Explore/Log.h"
+#include "Explore/ImGui/ImGuiLayer.h"
 
 //entry point
 #include "Explore/Entrypoint.h"

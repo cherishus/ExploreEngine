@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;EXPLORE_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;Explore_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;ThirdLib\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;ThirdLib\glad\include;ThirdLib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -103,7 +103,7 @@
       <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;EXPLORE_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;Explore_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;ThirdLib\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;ThirdLib\glad\include;ThirdLib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -130,7 +130,7 @@
       <PrecompiledHeaderFile>enginepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;EXPLORE_BUILD_DLL;EXPLORE_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;Explore_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;ThirdLib\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Src;ThirdLib\spdlog\include;ThirdLib\glfw\include;ThirdLib\glad\include;ThirdLib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -160,18 +160,23 @@
     <ClInclude Include="Src\Explore\Events\Event.h" />
     <ClInclude Include="Src\Explore\Events\KeyEvent.h" />
     <ClInclude Include="Src\Explore\Events\MouseEvent.h" />
+    <ClInclude Include="Src\Explore\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Src\Explore\Layer.h" />
     <ClInclude Include="Src\Explore\LayerStack.h" />
     <ClInclude Include="Src\Explore\Log.h" />
     <ClInclude Include="Src\Explore\Window.h" />
+    <ClInclude Include="Src\Platform\OpenGl\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="Src\Platform\OpenGl\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="Src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Src\enginepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Application.cpp" />
+    <ClCompile Include="Src\Explore\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Src\Explore\Layer.cpp" />
     <ClCompile Include="Src\Explore\LayerStack.cpp" />
     <ClCompile Include="Src\Explore\Log.cpp" />
+    <ClCompile Include="Src\Platform\OpenGl\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="Src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="Src\enginepch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -185,6 +190,9 @@
     </ProjectReference>
     <ProjectReference Include="ThirdLib\glad\GLAD.vcxproj">
       <Project>{5D4A857C-4981-860D-F26D-6C10DE83020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="ThirdLib\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

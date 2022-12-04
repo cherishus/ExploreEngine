@@ -53,6 +53,9 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Src\enginepch.h" />
+    <ClInclude Include="Src\Explore\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="Src\Platform\OpenGl\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="Src\Platform\OpenGl\imgui_impl_opengl3_loader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Application.cpp">
@@ -71,5 +74,7 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Src\enginepch.cpp" />
+    <ClCompile Include="Src\Explore\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="Src\Platform\OpenGl\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>

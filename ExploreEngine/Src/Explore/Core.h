@@ -17,6 +17,8 @@
 #else
 	#define EXPLORE_ASSERT(x,...)
 	#define EXPLORE_CORE_ASSERT(x,...)
-#endif // 
+#endif
 
 #define BIT(x) (1 << (x))
+
+#define EXPLORE_BIND_EVENT_FN(fn) std::bind(&fn,this,std::placeholders::_1) 

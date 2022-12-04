@@ -19,6 +19,10 @@ namespace Explore
 		void PushLayer(Layer* layer);
 
 		void PushOverlay(Layer* layer);
+
+		inline static Application& Get() { return *s_Instance; }
+
+		inline Window& GetWindow() { return *m_Window; }
 	
 	private:
 		bool OnWindowClose(Event& e);
@@ -29,7 +33,10 @@ namespace Explore
 		bool m_Running = true;
 
 		LayerStack m_LayerStack;
+
+		static Application* s_Instance;
 	};
+
 
 	//To be defined in Application
 	Application* CreateApplication();
