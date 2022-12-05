@@ -24,6 +24,8 @@ namespace Explore
 
 		bool IsVSync() const override;
 
+		inline virtual void* GetNativeWindow() override { return m_Window; }
+
 	private:
 		void Init(const WindowProps& props);
 

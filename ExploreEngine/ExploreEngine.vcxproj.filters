@@ -56,6 +56,8 @@
     <ClInclude Include="Src\Explore\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Src\Platform\OpenGl\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="Src\Platform\OpenGl\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Src\Explore\input.h" />
+    <ClInclude Include="Src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Application.cpp">
@@ -76,5 +78,6 @@
     <ClCompile Include="Src\enginepch.cpp" />
     <ClCompile Include="Src\Explore\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Src\Platform\OpenGl\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="Src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

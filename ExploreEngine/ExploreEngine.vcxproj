@@ -161,12 +161,14 @@
     <ClInclude Include="Src\Explore\Events\KeyEvent.h" />
     <ClInclude Include="Src\Explore\Events\MouseEvent.h" />
     <ClInclude Include="Src\Explore\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="Src\Explore\input.h" />
     <ClInclude Include="Src\Explore\Layer.h" />
     <ClInclude Include="Src\Explore\LayerStack.h" />
     <ClInclude Include="Src\Explore\Log.h" />
     <ClInclude Include="Src\Explore\Window.h" />
     <ClInclude Include="Src\Platform\OpenGl\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="Src\Platform\OpenGl\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="Src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Src\enginepch.h" />
   </ItemGroup>
@@ -177,6 +179,7 @@
     <ClCompile Include="Src\Explore\LayerStack.cpp" />
     <ClCompile Include="Src\Explore\Log.cpp" />
     <ClCompile Include="Src\Platform\OpenGl\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="Src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="Src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="Src\enginepch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

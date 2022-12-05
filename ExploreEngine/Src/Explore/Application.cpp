@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "Explore/Events/ApplicationEvent.h"
 #include "Log.h"
+#include "input.h"
 
 namespace Explore
 {
@@ -59,6 +60,9 @@ namespace Explore
 				layer->OnUpdate();
 			}
 			m_Window->OnUpdate();
+
+			auto MousePos = Input::GetMousePosition();
+			EXPLORE_CORE_LOG(trace, "MousePos: {0},{1}", MousePos.first, MousePos.second);
 		}
 	}
 }

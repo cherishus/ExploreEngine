@@ -37,6 +37,8 @@ namespace Explore
 
 		virtual bool IsVSync() const = 0;
 
+		virtual void* GetNativeWindow() = 0;
+
 		static Window* Create(const WindowProps& props = WindowProps());
 	};
 }
