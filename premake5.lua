@@ -14,6 +14,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "ExploreEngine/ThirdLib/glfw/include"
 IncludeDir["GLAD"] = "ExploreEngine/ThirdLib/glad/include"
 IncludeDir["ImGui"] = "ExploreEngine/ThirdLib/imgui"
+IncludeDir["glm"] = "ExploreEngine/ThirdLib/glm"
 
 include "ExploreEngine/ThirdLib/glfw"
 include "ExploreEngine/ThirdLib/glad"
@@ -33,7 +34,9 @@ project "ExploreEngine"
 	files
 	{
 		"%{prj.name}/Src/**.h",
-		"%{prj.name}/Src/**.cpp"
+		"%{prj.name}/Src/**.cpp",
+		"%{prj.name}/ThirdLib/glm/glm/**.hpp",
+		"%{prj.name}/ThirdLib/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -42,7 +45,8 @@ project "ExploreEngine"
 		"%{prj.name}/ThirdLib/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -103,7 +107,8 @@ project "Sandbox"
 	includedirs
 	{
 		"ExploreEngine/ThirdLib/spdlog/include",
-		"ExploreEngine/Src"
+		"ExploreEngine/Src",
+		"%{IncludeDir.glm}"
 	}
 
 	links

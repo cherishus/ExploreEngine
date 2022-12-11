@@ -182,6 +182,28 @@ void WindowsWindow::Init(const WindowProps& props)
 
 **ImGui事件回调：**1）事件分发流程GLFW->App->ImGuiLayer->ImGuiEvent；2）ImGui通过设置ImGuiIO来处理对应事件；
 
+**docking/viewport的实现：**目前ImGui支持浮动窗口；
+
+```cpp
+ImGuiIO& io = ImGui::GetIO(); (void)io;
+io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+```
+
+#### 输入轮询Input Polling
+
+**含义：**引擎提供一个查询功能，允许用户查询当前输入状态，如某个键是否被按下、鼠标是否按下、当前光标位置等；
+
+**实现：**1）参考window实现方式，引擎实现一个Input Class，向外提供静态查询方法，并且提供内部实现的虚接口；2）不同平台输入继承该类，重新实现接口；以及初始化Input静态对象；
+
+#### glm数学库
+
+**数学库的实现：**数学库为了加速，通常会使用SIMD(Single instruction multiple data，单指令多数据)指令集，本质上会在CPU上使用128位宽的寄存器进行乘法运算，实际上只需要使用一条指令实现矩阵运算；其中SSE/AVX均是SIMD指令集；
+
+而为了使用这些指令集实现数学库，一般两种方式：1）使用汇编代码，调用SIMD指令；2）使用编译器内部函数，不同编译器可能变量命名，以及函数不一样；
+
+**glm：**opengl mathmetics，基于C++的数学库，底层实现方式中有用到了SIMD指令；
+
 
 
 

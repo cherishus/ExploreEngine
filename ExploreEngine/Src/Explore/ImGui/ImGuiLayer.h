@@ -14,30 +14,15 @@ namespace Explore
 
 		~ImGuiLayer();
 
-		void OnAttach();
+		virtual void OnAttach() override;
 
-		void OnDetach();
+		virtual void OnDetach() override;
 
-		void OnUpdate();
+		virtual void OnImGuiRender() override;
 
-		void OnEvent(Event& event);
+		void Begin();
 
-	private:
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
-
-		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
-
-		bool OnMouseMovedEvent(MouseMovedEvent& e);
-
-		bool OnMouseScrolledEvent(MouseScrolledEvent& e);
-
-		bool OnKeyPressedEvent(KeyPressedEvent& e);
-
-		bool OnKeyReleasedEvent(KeyReleasedEvent& e);
-
-		bool OnKeyTypedEvent(KeyTypedEvent& e);
-
-		bool OnWindowResizedEvent(WindowResizeEvent& e);
+		void End();
 
 	private:
 		float m_Time = 0.0f;

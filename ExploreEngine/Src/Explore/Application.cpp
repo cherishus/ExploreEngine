@@ -3,6 +3,7 @@
 #include "Explore/Events/ApplicationEvent.h"
 #include "Log.h"
 #include "input.h"
+#include "glad/glad.h"
 
 namespace Explore
 {
@@ -17,6 +18,9 @@ namespace Explore
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer;
+		PushOverlay(m_ImGuiLayer);
 	}
 	
 	void Application::OnEvent(Event& e)
@@ -55,10 +59,21 @@ namespace Explore
 	{
 		while (m_Running)
 		{
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
+
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();
 			}
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnImGuiRender();
+			}
+			m_ImGuiLayer->End();
+
 			m_Window->OnUpdate();
 
 			auto MousePos = Input::GetMousePosition();

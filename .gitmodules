@@ -7,3 +7,6 @@
 [submodule "ExploreEngine/ThirdLib/imgui"]
 	path = ExploreEngine/ThirdLib/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "ExploreEngine/ThirdLib/glm"]
+	path = ExploreEngine/ThirdLib/glm
+	url = https://github.com/g-truc/glm

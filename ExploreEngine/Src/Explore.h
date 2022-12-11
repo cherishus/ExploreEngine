@@ -3,6 +3,7 @@
 //For use by Explore Applications
 #include "Explore/Core.h"
 #include "Explore/Application.h"
+#include "Explore/input.h"
 #include "Explore/Log.h"
 #include "Explore/ImGui/ImGuiLayer.h"
 
