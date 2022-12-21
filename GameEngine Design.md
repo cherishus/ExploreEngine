@@ -204,7 +204,11 @@ io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-View
 
 **glm：**opengl mathmetics，基于C++的数学库，底层实现方式中有用到了SIMD指令；
 
+#### 渲染架构
 
+**渲染分为两部分：**1）与平台无关的渲染功能，e.g:场景管理/裁剪/渲染等，以及材质/相机/视觉效果/后期等；2）与平台有关的图形API，这部分涉及到一定的术语，如缓冲区/纹理/管线等；
+
+![image-20221211225630591](C:\Users\HUAWEI\AppData\Roaming\Typora\typora-user-images\image-20221211225630591.png)
 
 
 

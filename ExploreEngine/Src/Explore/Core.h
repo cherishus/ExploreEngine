@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef  EXPLORE_PLATFORM_WINDOWS
-	#ifdef EXPLORE_BUILD_DLL
-		#define EXPLORE_API __declspec(dllexport)
+	#if HZ_DYNAMIC_LINK
+		#ifdef EXPLORE_BUILD_DLL
+			#define EXPLORE_API __declspec(dllexport)
+		#else
+			#define EXPLORE_API __declspec(dllimport)
+		#endif // EXPLORE_BUILD_DLL
 	#else
-		#define EXPLORE_API __declspec(dllimport)
-	#endif // EXPLORE_BUILD_DLL
+		#define EXPLORE_API
+	#endif // HZ_DYNAMIC_LINK
 #else
 	#error Explore only support Windows
 #endif //  EXPLORE_PLATFORM_WINDOWS

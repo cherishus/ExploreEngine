@@ -16,9 +16,6 @@
     <Filter Include="Src\Platform">
       <UniqueIdentifier>{011E97C6-ED80-266B-9606-5F218248F2ED}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Platform\OpenGl">
-      <UniqueIdentifier>{35DC471C-A13D-252A-2AAB-6BDC960B5CE9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Platform\Windows">
       <UniqueIdentifier>{3B395FFD-27C8-E8C6-D0E6-FCC1BC54F96C}</UniqueIdentifier>
     </Filter>
@@ -1349,6 +1346,9 @@
     <ClCompile Include="Src\Explore\Application.cpp">
       <Filter>Src\Explore</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Explore\ImGui\ImGuiBuild.cpp">
+      <Filter>Src\Explore\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Explore\ImGui\ImGuiLayer.cpp">
       <Filter>Src\Explore\ImGui</Filter>
     </ClCompile>
@@ -1370,6 +1370,5 @@
     <ClCompile Include="Src\enginepch.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Explore\ImGui\ImGuiBuild.cpp" />
   </ItemGroup>
 </Project>
