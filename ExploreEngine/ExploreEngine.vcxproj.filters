@@ -1341,6 +1341,12 @@
     <ClInclude Include="ThirdLib\glm\glm\vector_relational.hpp">
       <Filter>ThirdLib\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Explore\Renderer\Shader.h" />
+    <ClInclude Include="Src\Explore\Renderer\GraphicsContext.h" />
+    <ClInclude Include="Src\Platform\OpenGl\OpenGLContext.h" />
+    <ClInclude Include="Src\Explore\Renderer\Buffer.h" />
+    <ClInclude Include="Src\Platform\OpenGl\OpenGLBuffer.h" />
+    <ClInclude Include="Src\Explore\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Application.cpp">
@@ -1370,5 +1376,10 @@
     <ClCompile Include="Src\enginepch.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Explore\Renderer\Shader.cpp" />
+    <ClCompile Include="Src\Platform\OpenGl\OpenGLContext.cpp" />
+    <ClCompile Include="Src\Explore\Renderer\Buffer.cpp" />
+    <ClCompile Include="Src\Platform\OpenGl\OpenGLBuffer.cpp" />
+    <ClCompile Include="Src\Explore\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>

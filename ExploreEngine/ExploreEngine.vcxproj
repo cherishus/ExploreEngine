@@ -152,8 +152,14 @@
     <ClInclude Include="Src\Explore\Layer.h" />
     <ClInclude Include="Src\Explore\LayerStack.h" />
     <ClInclude Include="Src\Explore\Log.h" />
+    <ClInclude Include="Src\Explore\Renderer\Buffer.h" />
+    <ClInclude Include="Src\Explore\Renderer\GraphicsContext.h" />
+    <ClInclude Include="Src\Explore\Renderer\Renderer.h" />
+    <ClInclude Include="Src\Explore\Renderer\Shader.h" />
     <ClInclude Include="Src\Explore\Window.h" />
     <ClInclude Include="Src\Explore\input.h" />
+    <ClInclude Include="Src\Platform\OpenGl\OpenGLBuffer.h" />
+    <ClInclude Include="Src\Platform\OpenGl\OpenGLContext.h" />
     <ClInclude Include="Src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="Src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Src\enginepch.h" />
@@ -581,6 +587,11 @@
     <ClCompile Include="Src\Explore\Layer.cpp" />
     <ClCompile Include="Src\Explore\LayerStack.cpp" />
     <ClCompile Include="Src\Explore\Log.cpp" />
+    <ClCompile Include="Src\Explore\Renderer\Buffer.cpp" />
+    <ClCompile Include="Src\Explore\Renderer\Renderer.cpp" />
+    <ClCompile Include="Src\Explore\Renderer\Shader.cpp" />
+    <ClCompile Include="Src\Platform\OpenGl\OpenGLBuffer.cpp" />
+    <ClCompile Include="Src\Platform\OpenGl\OpenGLContext.cpp" />
     <ClCompile Include="Src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="Src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="Src\enginepch.cpp">

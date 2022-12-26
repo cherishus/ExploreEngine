@@ -12,7 +12,7 @@ public:
 
 	void OnEvent(Explore::Event& event) override
 	{
-		EXPLORE_CLIENT_LOG(info, "Examplelayer::OnEvent()");
+		//EXPLORE_CLIENT_LOG(info, "Examplelayer::OnEvent()");
 	}
 };
 

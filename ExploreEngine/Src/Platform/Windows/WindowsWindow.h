@@ -1,5 +1,6 @@
 #pragma once
 #include "Explore/Window.h"
+#include "Explore/Renderer/GraphicsContext.h"
 #include "GLFW/glfw3.h"
 
 namespace Explore
@@ -33,6 +34,8 @@ namespace Explore
 
 	private:
 		GLFWwindow* m_Window; //use GLFW to implement window class in window platform
+
+		std::shared_ptr<GraphicsContext> m_Context; //rendering context
 
 		struct WindowData
 		{

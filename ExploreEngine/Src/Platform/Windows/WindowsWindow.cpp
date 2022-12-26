@@ -5,6 +5,7 @@
 #include "Explore/Events/ApplicationEvent.h"
 #include "Explore/Events/KeyEvent.h"
 #include "Explore/Events/MouseEvent.h"
+#include "Platform/OpenGl/OpenGLContext.h"
 #include "glad/glad.h"
 //ExploreEngine has already defined "GLFW_INCLUDE_NONE", ensure glfw not include __gl_h_, otherwise glad.h is failed to compile
 
@@ -50,9 +51,11 @@ namespace Explore
 
 		//create window
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		EXPLORE_ASSERT(status, "Failed to initialize Glad!");
+		
+		//receive window handle and create context for rendering api by Using OpenGL 
+		m_Context = std::make_shared<OpenGLContext>(m_Window);
+		m_Context->Init();
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -142,8 +145,8 @@ namespace Explore
 
 	void WindowsWindow::OnUpdate()
 	{
+		m_Context->SwapBuffers();
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
