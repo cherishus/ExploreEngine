@@ -224,6 +224,8 @@ io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-View
 
 **着色器：**一段运行在GPU上的代码，主要包括顶点着色器/片段着色器，顶点着色器负责计算顶点在裁剪空间中的位置，片段着色器负责计算每个像素的颜色，同时需要做一些光照计算；
 
-**内存缓冲区：**vertex buffer和index buffer，分别存放顶点数据和索引数据；
+**内存缓冲区：**vertex buffer和index buffer，在GPU中分别存放顶点数据和索引数据； 
 
 **缓冲区布局：**buffer layout，描述了内存缓冲区的数据布局，如含哪些数据，以及顶点/法线/颜色等数据长度和偏移量等；在OpenGL中通常使用vertexAttribute/顶点属性来描述布局； 
+
+cpp构造函数隐式转换，默认构造函数

@@ -14,8 +14,14 @@ namespace Explore
 
 		virtual void UnBind() override;
 
+		virtual void SetLayout(BufferLayout layout) override;
+
+		virtual BufferLayout& GetLayout() override;
+
 	private:
 		uint32_t m_VertexBufferID; //VBO Id
+
+		BufferLayout m_Layout; //data layout in vertex buffer
 	};
 
 	class OpenGLIndexBuffer : public IndexBuffer

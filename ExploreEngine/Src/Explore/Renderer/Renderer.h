@@ -2,6 +2,7 @@
 
 namespace Explore
 {
+	//abstract Render API
 	enum class RendererAPI
 	{
 		None = 0,

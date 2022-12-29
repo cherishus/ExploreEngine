@@ -26,46 +26,68 @@ namespace Explore
 		//shader
 		const std::string vertexSrc = "#version 330 core\n"
 			"layout (location = 0) in vec3 aPos;\n"
+			"layout (location = 1) in vec4 aColor;\n"
 			"out vec3 vPos;\n"
+			"out vec4 vColor;\n"
 			"void main()\n"
 			"{\n"
 			"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 			"	vPos = aPos;\n"
+			"   vColor = aColor;\n"	
 			"}\0";
 
 		const std::string fragSrc = "#version 330 core\n"
 			"out vec4 FragColor;\n"
 			"in vec3 vPos;\n"
+			"in vec4 vColor;\n"
 			"void main()\n"
 			"{\n"
-			"   FragColor = vec4(vPos+0.5f, 1.0f);\n"
+			"   FragColor = vColor;\n"
 			"}\n\0";
 
 		m_Shader.reset(new Shader(vertexSrc, fragSrc));
 
 		//bind VAO
-		glGenVertexArrays(1, &m_VAO);
-		glBindVertexArray(m_VAO);
+		m_VertexArray.reset(VertexArray::Create());
 
-		//vertices data in Normalized Device Coordinates(NDC)
-		float vertices[] = {
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.0f, 0.5f, 0.0f,
-		};
-		//bind VBO
-		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		//vertex buffer
+		{
+			//vertices data in Normalized Device Coordinates(NDC)
+			float vertices[] = {
+				-0.5f, -0.5f, 0.0f, 1.0f,0.0f,0.0f,1.0f,
+				0.5f, -0.5f, 0.0f,0.0f,1.0f,0.0f,1.0f,
+				0.0f, 0.5f, 0.0f,0.0f,0.0f,1.0f,1.0f
+			};
 
-		//index data
-		uint32_t indices[] = { //index begins from 0 
-			0, 1, 2, //first triangle
-		};
-		//bind EBO
-		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+			//create VBO
+			std::shared_ptr<VertexBuffer> vertexBuffer;
+			vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		//ser vertex attribute: explain GL_ARRAY_BUFFER data
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0); //first parameter 0 represents location£¬layout/components/type/normalize/stride/offset
-		glEnableVertexAttribArray(0);
+			//buffer layout
+			BufferLayout layout = {
+				{"aPos",   ShaderDataType::Float3},
+				{"aColor", ShaderDataType::Float4}
+			};
+			vertexBuffer->SetLayout(layout);
+
+			//bind VBO to VAO
+			m_VertexArray->AddVertexBuffer(vertexBuffer);
+		}
+
+		//index buffer
+		{
+			//index data
+			uint32_t indices[] = { //index begins from 0 
+				0, 1, 2, //first triangle
+			};
+
+			//create EBO
+			std::shared_ptr<IndexBuffer> indexBuffer;
+			indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+
+			//bind EBO to VAO
+			m_VertexArray->SetIndexBuffer(indexBuffer);
+		}
 
 		//glBindBuffer(GL_ARRAY_BUFFER, 0);
 		//glBindVertexArray(0);
@@ -111,8 +133,8 @@ namespace Explore
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			m_Shader->Bind();
-			glBindVertexArray(m_VAO);
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+			m_VertexArray->Bind();
+			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0);
 
 			for (Layer* layer : m_LayerStack)
 			{
