@@ -1,20 +1,19 @@
 #pragma once
+#include "RenderCommand.h"
 
 namespace Explore
 {
-	//abstract Render API
-	enum class RendererAPI
-	{
-		None = 0,
-		OpenGL = 1
-	};
-
+	//Provide Rendering Functions for Renderer
+	//its level is high to RenderCommand
 	class Renderer
 	{
 	public:
-		static RendererAPI GetAPI() { return s_RendererAPI; }
+		static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
-	private:
-		static RendererAPI s_RendererAPI;
+		static void BeginScene();
+
+		static void EndScene();
+
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
 	};
 }

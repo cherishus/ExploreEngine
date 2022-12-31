@@ -10,13 +10,13 @@ namespace Explore
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:
+			case RendererAPI::API::None:
 			{
 				EXPLORE_ASSERT(false, "RendererAPI Is None, Create VertexBuffer Failed!");
 				return nullptr;
 				break;
 			}
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 			{
 				return new OpenGLVertexBuffer(vertices, size);
 				break;
@@ -30,13 +30,13 @@ namespace Explore
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:
+			case RendererAPI::API::None:
 			{
 				EXPLORE_ASSERT(false, "RendererAPI Is None, Create IndexBuffer Failed!");
 				return nullptr;
 				break;
 			}
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 			{
 				return new OpenGLIndexBuffer(indices, count);
 				break;

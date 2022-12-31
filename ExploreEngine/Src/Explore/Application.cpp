@@ -4,7 +4,7 @@
 #include "Log.h"
 #include "input.h"
 #include "Renderer/Buffer.h"
-#include "glad/glad.h"
+#include "Renderer/Renderer.h"
 
 namespace Explore
 {
@@ -129,12 +129,13 @@ namespace Explore
 	{
 		while (m_Running)
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
 
-			m_Shader->Bind();
-			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0);
+			Renderer::BeginScene();
+			m_Shader->Bind(); //provide shader
+			Renderer::Submit(m_VertexArray); //provide VAO containing the reference of VBO and EAO
+			Renderer::EndScene();
 
 			for (Layer* layer : m_LayerStack)
 			{

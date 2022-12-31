@@ -228,4 +228,14 @@ io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-View
 
 **缓冲区布局：**buffer layout，描述了内存缓冲区的数据布局，如含哪些数据，以及顶点/法线/颜色等数据长度和偏移量等；在OpenGL中通常使用vertexAttribute/顶点属性来描述布局； 
 
-cpp构造函数隐式转换，默认构造函数
+**DrawCall:**  a call or command to draw something on the screen，该指令会告知显卡一组信息，如object对应的buffer信息，如运行哪个vertexShader以及piexlShader；在openGL中glDrawElements是一个drawcall；
+
+**渲染流程：**当渲染一个3D scene，需要两方面信息，一方面与environment有关，如描述light分布或者cubemap的环境参数，提供viewMatrix和projectMatrix的相机；一方面与object有关，如自身的世界坐标，携带的材质material；而object自身的mesh数据会放入buffer中，在vertexShader中计算；自身的材质会塞入piexlShader，参与光照计算，获取对应颜色；
+
+```c++
+Renderer::BeginScene(camera,lights,environment); //contain infos related to scene
+Renderer::Submit(); //submit vertexShader containing mesh data and piexl shader containing material data
+Renderer::EndScene();
+Renderer::Flush(); //using in the multi-thread game engine design
+```
+

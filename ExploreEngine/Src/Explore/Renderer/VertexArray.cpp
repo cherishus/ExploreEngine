@@ -7,15 +7,15 @@ namespace Explore
 {
 	VertexArray* VertexArray::Create()
 	{
-		RendererAPI renderApi = Renderer::GetAPI();
+		RendererAPI::API renderApi = Renderer::GetAPI();
 		switch (renderApi)
 		{
-			case RendererAPI::None: 
+			case RendererAPI::API::None:
 			{
 				EXPLORE_ASSERT(false, "RendererAPI Is None, Create VertexArray Failed!");
 				return nullptr;
 			}
-			case RendererAPI::OpenGL: 
+			case RendererAPI::API::OpenGL:
 			{
 				return new OpenGLVertexArray();
 			}
