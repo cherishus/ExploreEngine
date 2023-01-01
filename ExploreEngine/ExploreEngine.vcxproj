@@ -154,6 +154,7 @@
     <ClInclude Include="Src\Explore\Log.h" />
     <ClInclude Include="Src\Explore\Renderer\Buffer.h" />
     <ClInclude Include="Src\Explore\Renderer\GraphicsContext.h" />
+    <ClInclude Include="Src\Explore\Renderer\OrthographicCamera.h" />
     <ClInclude Include="Src\Explore\Renderer\RenderCommand.h" />
     <ClInclude Include="Src\Explore\Renderer\Renderer.h" />
     <ClInclude Include="Src\Explore\Renderer\RendererAPI.h" />
@@ -593,6 +594,7 @@
     <ClCompile Include="Src\Explore\LayerStack.cpp" />
     <ClCompile Include="Src\Explore\Log.cpp" />
     <ClCompile Include="Src\Explore\Renderer\Buffer.cpp" />
+    <ClCompile Include="Src\Explore\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="Src\Explore\Renderer\RenderCommand.cpp" />
     <ClCompile Include="Src\Explore\Renderer\Renderer.cpp" />
     <ClCompile Include="Src\Explore\Renderer\RendererAPI.cpp" />

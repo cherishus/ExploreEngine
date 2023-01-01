@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include "glm/glm.hpp"
 
 namespace Explore
 {
@@ -13,6 +14,8 @@ namespace Explore
 		void Bind();
 
 		void UnBind();
+
+		void UploadUnifromMat4(std::string name, const glm::mat4& value);
 
 	private:
 		uint32_t m_RendererId;

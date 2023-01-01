@@ -216,11 +216,13 @@ io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-View
 
 #### 渲染架构
 
-**渲染分为两部分：**1）与平台无关的渲染功能，e.g:场景管理/裁剪/渲染等，以及材质/相机/视觉效果/后期等；2）与平台有关的图形API，这部分涉及到一定的术语，如缓冲区/纹理/管线等；
+**渲染分为两部分：**1）与平台无关的渲染功能/Renderer，e.g:场景管理/裁剪/渲染等，以及材质/相机/视觉效果/后期等；2）与平台有关的图形API/RendererAPI，这部分涉及到一定的术语，如缓冲区/纹理/管线等；
 
 ![image-20221211225630591](C:\Users\HUAWEI\AppData\Roaming\Typora\typora-user-images\image-20221211225630591.png)
 
-渲染上下文：
+==RendererAPI==
+
+**渲染上下文：** context for RendererAPI，为渲染API服务，提供一个渲染目标；在openGL中，窗口句柄就是一个渲染上下文；
 
 **着色器：**一段运行在GPU上的代码，主要包括顶点着色器/片段着色器，顶点着色器负责计算顶点在裁剪空间中的位置，片段着色器负责计算每个像素的颜色，同时需要做一些光照计算；
 
@@ -238,4 +240,20 @@ Renderer::Submit(); //submit vertexShader containing mesh data and piexl shader 
 Renderer::EndScene();
 Renderer::Flush(); //using in the multi-thread game engine design
 ```
+
+#### 相机
+
+**相机理解：**相机可以理解成数据集合，包含Transform、FOV、near/far plane、aspect ratio等；Transform提供viewMatrix，可以用于转换场景所有物体在相机视角下的位置；FOV和aspect ratio提供projectionMatrix，对视锥内的物体投影到正交中，用于下一步屏幕转换；
+
+```cpp
+//顶点数据的处理
+In GLM: column-major
+Proj * view * model * vertexPos;
+In DirectX: row-major
+vertexPos * model * view * proj
+```
+
+**代码相关：**关于相机数据，可以在beginScene(camera)塞入，然后通过unifrom buffer，设置到shader中；而在uniform数据中可以分为两类，一类关于渲染相关的，如cameraMatrix，ModelMatrix，会设置到vertexShader中，还有环境参数光线数据，会设置到piexlShader中；一类关于材质的，会设置到piexlShader中；
+
+
 

@@ -2,6 +2,7 @@
 #include "Shader.h"
 #include "Explore/Log.h"
 #include "glad/glad.h"
+#include "glm/gtc/type_ptr.hpp"
 
 namespace Explore
 {
@@ -68,6 +69,12 @@ namespace Explore
 	void Shader::UnBind()
 	{
 		glUseProgram(0);
+	}
+
+	void Shader::UploadUnifromMat4(std::string name, const glm::mat4& value)
+	{
+		int location = glGetUniformLocation(m_RendererId, name.c_str());
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
 }
 

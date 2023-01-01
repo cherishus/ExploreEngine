@@ -6,6 +6,7 @@
 #include "Renderer/Shader.h"
 #include "Renderer/Buffer.h"
 #include "Renderer/VertexArray.h"
+#include "Renderer/OrthographicCamera.h"
 
 namespace Explore
 {
@@ -43,6 +44,8 @@ namespace Explore
 		std::shared_ptr<Shader> m_Shader;
 
 		std::shared_ptr<VertexArray> m_VertexArray;
+
+		OrthographicCamera m_Camera;
 
 	private:
 		static Application* s_Instance;

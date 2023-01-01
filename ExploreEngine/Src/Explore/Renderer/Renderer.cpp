@@ -4,19 +4,23 @@
 
 namespace Explore
 {
-	void Renderer::BeginScene()
+	Renderer::SceneData Renderer::s_SceneData = Renderer::SceneData();
+
+	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
-		//EXPLORE_CORE_LOG(info, "Renderer::BeginScene()");
+		//update SceneData
+		s_SceneData.viewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
 	{
-		//EXPLORE_CORE_LOG(info, "Renderer::EndScene()");
+		
 	}
 
-	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
+	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray)
 	{
-		//EXPLORE_CORE_LOG(info, "Renderer::Submit()");
-		RenderCommand::DrawIndexd(vertexArray);
+		shader->UploadUnifromMat4("u_Matrix",s_SceneData.viewProjectionMatrix);//update unifrom in shader
+		shader->Bind(); //bind shader
+		RenderCommand::DrawIndexd(vertexArray);//bind buffer about mesh
 	}
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include "RenderCommand.h"
+#include "Shader.h"
+#include "OrthographicCamera.h"
 
 namespace Explore
 {
@@ -10,10 +12,18 @@ namespace Explore
 	public:
 		static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
-		static void BeginScene();
+		static void BeginScene(OrthographicCamera& camera);
 
 		static void EndScene();
 
-		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+		static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);
+	
+		struct SceneData
+		{
+			glm::mat4 viewProjectionMatrix;
+		};
+
+	private:
+		static SceneData s_SceneData;
 	};
 }

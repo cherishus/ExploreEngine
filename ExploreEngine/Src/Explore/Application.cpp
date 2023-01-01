@@ -12,7 +12,7 @@ namespace Explore
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application() : m_Camera(-1.0f,1.0f,-1.0f,1.0f)
 	{
 		EXPLORE_ASSERT(!s_Instance, "Application already exists");
 		s_Instance = this;
@@ -27,18 +27,16 @@ namespace Explore
 		const std::string vertexSrc = "#version 330 core\n"
 			"layout (location = 0) in vec3 aPos;\n"
 			"layout (location = 1) in vec4 aColor;\n"
-			"out vec3 vPos;\n"
+			"uniform mat4 u_Matrix;\n"
 			"out vec4 vColor;\n"
 			"void main()\n"
 			"{\n"
-			"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-			"	vPos = aPos;\n"
+			"   gl_Position = u_Matrix * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 			"   vColor = aColor;\n"	
 			"}\0";
 
 		const std::string fragSrc = "#version 330 core\n"
 			"out vec4 FragColor;\n"
-			"in vec3 vPos;\n"
 			"in vec4 vColor;\n"
 			"void main()\n"
 			"{\n"
@@ -88,9 +86,6 @@ namespace Explore
 			//bind EBO to VAO
 			m_VertexArray->SetIndexBuffer(indexBuffer);
 		}
-
-		//glBindBuffer(GL_ARRAY_BUFFER, 0);
-		//glBindVertexArray(0);
 	}
 	
 	void Application::OnEvent(Event& e)
@@ -132,9 +127,11 @@ namespace Explore
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
-			m_Shader->Bind(); //provide shader
-			Renderer::Submit(m_VertexArray); //provide VAO containing the reference of VBO and EAO
+			m_Camera.SetLocation({ 0.0f,0.0f,0.0f });
+			m_Camera.SetRotaion(10);
+
+			Renderer::BeginScene(m_Camera);
+			Renderer::Submit(m_Shader,m_VertexArray); //provide shader and VAO containing the reference of VBO and EAO
 			Renderer::EndScene();
 
 			for (Layer* layer : m_LayerStack)
