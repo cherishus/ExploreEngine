@@ -5,6 +5,7 @@
 #include "input.h"
 #include "Renderer/Buffer.h"
 #include "Renderer/Renderer.h"
+#include "GLFW/glfw3.h"
 
 namespace Explore
 {
@@ -12,80 +13,17 @@ namespace Explore
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application() : m_Camera(-1.0f,1.0f,-1.0f,1.0f)
+	Application::Application()
 	{
 		EXPLORE_ASSERT(!s_Instance, "Application already exists");
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		//m_Window->SetVSync(true);
 
 		m_ImGuiLayer = new ImGuiLayer;
 		PushOverlay(m_ImGuiLayer);
-
-		//shader
-		const std::string vertexSrc = "#version 330 core\n"
-			"layout (location = 0) in vec3 aPos;\n"
-			"layout (location = 1) in vec4 aColor;\n"
-			"uniform mat4 u_Matrix;\n"
-			"out vec4 vColor;\n"
-			"void main()\n"
-			"{\n"
-			"   gl_Position = u_Matrix * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-			"   vColor = aColor;\n"	
-			"}\0";
-
-		const std::string fragSrc = "#version 330 core\n"
-			"out vec4 FragColor;\n"
-			"in vec4 vColor;\n"
-			"void main()\n"
-			"{\n"
-			"   FragColor = vColor;\n"
-			"}\n\0";
-
-		m_Shader.reset(new Shader(vertexSrc, fragSrc));
-
-		//bind VAO
-		m_VertexArray.reset(VertexArray::Create());
-
-		//vertex buffer
-		{
-			//vertices data in Normalized Device Coordinates(NDC)
-			float vertices[] = {
-				-0.5f, -0.5f, 0.0f, 1.0f,0.0f,0.0f,1.0f,
-				0.5f, -0.5f, 0.0f,0.0f,1.0f,0.0f,1.0f,
-				0.0f, 0.5f, 0.0f,0.0f,0.0f,1.0f,1.0f
-			};
-
-			//create VBO
-			std::shared_ptr<VertexBuffer> vertexBuffer;
-			vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-
-			//buffer layout
-			BufferLayout layout = {
-				{"aPos",   ShaderDataType::Float3},
-				{"aColor", ShaderDataType::Float4}
-			};
-			vertexBuffer->SetLayout(layout);
-
-			//bind VBO to VAO
-			m_VertexArray->AddVertexBuffer(vertexBuffer);
-		}
-
-		//index buffer
-		{
-			//index data
-			uint32_t indices[] = { //index begins from 0 
-				0, 1, 2, //first triangle
-			};
-
-			//create EBO
-			std::shared_ptr<IndexBuffer> indexBuffer;
-			indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-
-			//bind EBO to VAO
-			m_VertexArray->SetIndexBuffer(indexBuffer);
-		}
 	}
 	
 	void Application::OnEvent(Event& e)
@@ -124,19 +62,13 @@ namespace Explore
 	{
 		while (m_Running)
 		{
-			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-			RenderCommand::Clear();
-
-			m_Camera.SetLocation({ 0.0f,0.0f,0.0f });
-			m_Camera.SetRotaion(10);
-
-			Renderer::BeginScene(m_Camera);
-			Renderer::Submit(m_Shader,m_VertexArray); //provide shader and VAO containing the reference of VBO and EAO
-			Renderer::EndScene();
+			float currentTime = (float)glfwGetTime(); //get time by glfw, it is temporary way
+			m_Timestep = currentTime - m_LastTime;
+			m_LastTime = currentTime;
 
 			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnUpdate();
+				layer->OnUpdate(m_Timestep);
 			}
 
 			m_ImGuiLayer->Begin();

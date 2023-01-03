@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Events/Event.h"
+#include "Explore/Core/Timestep.h"
 
 namespace Explore
 {
@@ -15,7 +16,7 @@ namespace Explore
 
 		virtual void OnDetach() {}
 
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 
 		virtual void OnImGuiRender() {}
 

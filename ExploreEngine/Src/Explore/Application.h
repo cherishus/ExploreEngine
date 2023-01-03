@@ -10,7 +10,7 @@
 
 namespace Explore
 {
-	class EXPLORE_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -41,11 +41,9 @@ namespace Explore
 
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<Shader> m_Shader;
+		Timestep m_Timestep;
 
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		OrthographicCamera m_Camera;
+		float m_LastTime = 0.0f;
 
 	private:
 		static Application* s_Instance;

@@ -10,15 +10,15 @@ namespace Explore
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		glfwGetKey(window, keycode);
-		return keycode == GLFW_PRESS || keycode == GLFW_REPEAT;
+		int result = glfwGetKey(window, keycode);
+		return result == GLFW_PRESS || result == GLFW_REPEAT;
 	}
 
 	bool WindowsInput::IsMouseButtonPressedImpl(int button)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		glfwGetMouseButton(window, button);
-		return button == GLFW_PRESS;
+		int result = glfwGetMouseButton(window, button);
+		return result == GLFW_PRESS;
 	}
 
 	std::pair<float, float> WindowsInput::GetMousePositionImpl()

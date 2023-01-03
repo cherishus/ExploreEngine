@@ -143,12 +143,14 @@
     <ClInclude Include="Src\Explore.h" />
     <ClInclude Include="Src\Explore\Application.h" />
     <ClInclude Include="Src\Explore\Core.h" />
+    <ClInclude Include="Src\Explore\Core\Timestep.h" />
     <ClInclude Include="Src\Explore\Entrypoint.h" />
     <ClInclude Include="Src\Explore\Events\ApplicationEvent.h" />
     <ClInclude Include="Src\Explore\Events\Event.h" />
     <ClInclude Include="Src\Explore\Events\KeyEvent.h" />
     <ClInclude Include="Src\Explore\Events\MouseEvent.h" />
     <ClInclude Include="Src\Explore\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="Src\Explore\KeyCode.h" />
     <ClInclude Include="Src\Explore\Layer.h" />
     <ClInclude Include="Src\Explore\LayerStack.h" />
     <ClInclude Include="Src\Explore\Log.h" />
