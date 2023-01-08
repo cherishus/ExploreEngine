@@ -255,5 +255,13 @@ vertexPos * model * view * proj
 
 **代码相关：**关于相机数据，可以在beginScene(camera)塞入，然后通过unifrom buffer，设置到shader中；而在uniform数据中可以分为两类，一类关于渲染相关的，如cameraMatrix，ModelMatrix，会设置到vertexShader中，还有环境参数光线数据，会设置到piexlShader中；一类关于材质的，会设置到piexlShader中；
 
+**timestep:** 没有时间间隔参数时，相机的更新依赖于帧率，帧率高的引擎，相机移动快；为了解决该问题，在tick中引入时间间隔，确保相同时间内移动与帧率无关；
 
+#### 材质
+
+**材质理解：**材质本质上是由一组数据和piexlshader组成，数据用来描述物体表面属性，通常以输入的方式（uniform）写入到piexlshader中，参与光照计算，获取最终颜色；
+
+代码层面上，material class会接受一个shader参数，并且支持修改参数；同时会引入材质实例，其继承材质，用于区分base material，材质实例是材质的一个实例，继承同一个base material的不同材质实例的uniform值不同；其次，后续mesh接受材质实例，用于修改材质，并且渲染提交时不再是shader，而是材质；
+
+资产管理：考虑到后续渲染器会采用延迟渲染，以及多线程，因此整个资产管理（如材质/shader/vertexArray等）需要考虑内存管理、线程安全；目前堆栈分配的资产采用shader_prt进行引用计数管理；
 

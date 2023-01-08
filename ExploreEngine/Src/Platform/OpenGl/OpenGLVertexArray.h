@@ -14,19 +14,19 @@ namespace Explore
 
 		virtual void UnBind() override;
 
-		virtual void AddVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer) override;
+		virtual void AddVertexBuffer(Ref<VertexBuffer> vertexBuffer) override;
 
-		virtual std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffer() override { return m_VertexBuffers; }
+		virtual std::vector<Ref<VertexBuffer>>& GetVertexBuffer() override { return m_VertexBuffers; }
 
-		virtual void SetIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer) override;
+		virtual void SetIndexBuffer(Ref<IndexBuffer> indexBuffer) override;
 
-		virtual std::shared_ptr<IndexBuffer>& GetIndexBuffer() override { return m_IndexBuffer; }
+		virtual Ref<IndexBuffer>& GetIndexBuffer() override { return m_IndexBuffer; }
 		
 	private:
 		uint32_t m_VertexArrayID; //VAO Id
 
-		std::vector<std::shared_ptr<VertexBuffer>> m_VertexBuffers;
+		std::vector<Ref<VertexBuffer>> m_VertexBuffers;
 
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		Ref<IndexBuffer> m_IndexBuffer;
 	};
 }

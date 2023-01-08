@@ -11,6 +11,6 @@ namespace Explore
 
 		virtual void Clear() override;
 
-		virtual void DrawIndexd(const std::shared_ptr<VertexArray>& vertexArray) override;
+		virtual void DrawIndexd(const Ref<VertexArray>& vertexArray) override;
 	};
 }

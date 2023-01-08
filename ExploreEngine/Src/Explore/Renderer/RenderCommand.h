@@ -18,12 +18,12 @@ namespace Explore
 			m_RendererAPI->Clear();
 		}
 
-		static inline void DrawIndexd(const std::shared_ptr<VertexArray>& vertexArray)
+		static inline void DrawIndexd(const Ref<VertexArray>& vertexArray)
 		{
 			m_RendererAPI->DrawIndexd(vertexArray);
 		}
 
 	private:
-		static std::shared_ptr<RendererAPI> m_RendererAPI;
+		static Ref<RendererAPI> m_RendererAPI;
 	};
 }

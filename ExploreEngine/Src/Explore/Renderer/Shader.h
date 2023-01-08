@@ -1,23 +1,17 @@
 #pragma once
 #include<string>
-#include "glm/glm.hpp"
 
 namespace Explore
 {
 	class Shader
 	{
 	public:
-		Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
+		virtual ~Shader() = default;
 
-		~Shader();
+		virtual void Bind() = 0;
 
-		void Bind();
+		virtual void UnBind() = 0;
 
-		void UnBind();
-
-		void UploadUnifromMat4(std::string name, const glm::mat4& value);
-
-	private:
-		uint32_t m_RendererId;
+		static Shader* Create(const std::string& vertexSrc, const std::string& fragmentSrc);
 	};
 }

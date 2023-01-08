@@ -104,7 +104,8 @@ project "Sandbox"
 	{
 		"ExploreEngine/ThirdLib/spdlog/include",
 		"ExploreEngine/Src",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links

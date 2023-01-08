@@ -35,7 +35,7 @@ namespace Explore
 	private:
 		GLFWwindow* m_Window; //use GLFW to implement window class in window platform
 
-		std::shared_ptr<GraphicsContext> m_Context; //rendering context
+		Ref<GraphicsContext> m_Context; //rendering context
 
 		struct WindowData
 		{

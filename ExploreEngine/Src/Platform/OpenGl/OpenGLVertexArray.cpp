@@ -46,7 +46,7 @@ namespace Explore
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(Ref<VertexBuffer> vertexBuffer)
 	{
 		//Add reference of vertexBuffer to VAO
 		glBindVertexArray(m_VertexArrayID);
@@ -71,7 +71,7 @@ namespace Explore
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
+	void OpenGLVertexArray::SetIndexBuffer(Ref<IndexBuffer> indexBuffer)
 	{
 		glBindVertexArray(m_VertexArrayID);
 		indexBuffer->Bind(); //Add reference of indexBuffer to VAO
