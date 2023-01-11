@@ -7,6 +7,11 @@ namespace Explore
 {
 	Renderer::SceneData Renderer::s_SceneData = Renderer::SceneData();
 
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
 		//update SceneData

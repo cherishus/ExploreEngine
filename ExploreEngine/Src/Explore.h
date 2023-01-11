@@ -14,6 +14,7 @@
 #include "Explore/Renderer/RenderCommand.h"
 #include "Explore/Renderer/Shader.h"
 #include "Explore/Renderer/OrthographicCamera.h"
+#include "Explore/Renderer/Texture.h"
 
 //entry point
 #include "Explore/Entrypoint.h"

@@ -3,7 +3,6 @@
 #include "Explore/Events/ApplicationEvent.h"
 #include "Log.h"
 #include "input.h"
-#include "Renderer/Buffer.h"
 #include "Renderer/Renderer.h"
 #include "GLFW/glfw3.h"
 
@@ -21,6 +20,8 @@ namespace Explore
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		//m_Window->SetVSync(true);
+
+		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer;
 		PushOverlay(m_ImGuiLayer);

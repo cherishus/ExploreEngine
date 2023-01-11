@@ -8,6 +8,11 @@ namespace Explore
 	class RenderCommand
 	{
 	public:
+		static inline void Init()
+		{
+			m_RendererAPI->Init();
+		}
+
 		static inline void SetClearColor(const glm::vec4& color)
 		{
 			m_RendererAPI->SetClearColor(color);

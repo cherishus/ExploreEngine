@@ -15,6 +15,7 @@ IncludeDir["GLFW"] = "ExploreEngine/ThirdLib/glfw/include"
 IncludeDir["GLAD"] = "ExploreEngine/ThirdLib/glad/include"
 IncludeDir["ImGui"] = "ExploreEngine/ThirdLib/imgui"
 IncludeDir["glm"] = "ExploreEngine/ThirdLib/glm"
+IncludeDir["stb_image"] = "ExploreEngine/ThirdLib/stb_image"
 
 include "ExploreEngine/ThirdLib/glfw"
 include "ExploreEngine/ThirdLib/glad"
@@ -38,7 +39,9 @@ project "ExploreEngine"
 		"%{prj.name}/Src/**.h",
 		"%{prj.name}/Src/**.cpp",
 		"%{prj.name}/ThirdLib/glm/glm/**.hpp",
-		"%{prj.name}/ThirdLib/glm/glm/**.inl"
+		"%{prj.name}/ThirdLib/glm/glm/**.inl",
+		"%{prj.name}/ThirdLib/stb_image/**.h",
+		"%{prj.name}/ThirdLib/stb_image/**.cpp"
 	}
 
 	includedirs
@@ -48,7 +51,8 @@ project "ExploreEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

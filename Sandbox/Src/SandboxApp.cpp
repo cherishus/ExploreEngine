@@ -9,30 +9,6 @@ class ExampleLayer : public Explore::Layer
 public:
 	ExampleLayer() : Layer("ExampleLayer"), m_Camera(-1.0f, 1.0f, -1.0f, 1.0f)
 	{
-		//shader
-		const std::string vertexSrc = "#version 330 core\n"
-			"layout (location = 0) in vec3 aPos;\n"
-			"layout (location = 1) in vec4 aColor;\n"
-			"uniform mat4 u_ProjectionViewMatrix;\n"
-			"uniform mat4 u_ModelMatrix;\n"
-			"out vec4 vColor;\n"
-			"void main()\n"
-			"{\n"
-			"   gl_Position = u_ProjectionViewMatrix * u_ModelMatrix * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-			"   vColor = aColor;\n"
-			"}\0";
-
-		const std::string fragSrc = "#version 330 core\n"
-			"out vec4 FragColor;\n"
-			"in vec4 vColor;\n"
-			"uniform vec3 u_color;\n"
-			"void main()\n"
-			"{\n"
-			"   FragColor = vec4(u_color,1.0f);\n"
-			"}\n\0";
-
-		m_Shader.reset(Explore::Shader::Create(vertexSrc, fragSrc));
-
 		//bind VAO
 		m_VertexArray.reset(Explore::VertexArray::Create());
 
@@ -40,9 +16,10 @@ public:
 		{
 			//vertices data in Normalized Device Coordinates(NDC)
 			float vertices[] = {
-				-0.5f, -0.5f, 0.0f, 1.0f,0.0f,0.0f,1.0f,
-				0.5f, -0.5f, 0.0f,0.0f,1.0f,0.0f,1.0f,
-				0.0f, 0.5f, 0.0f,0.0f,0.0f,1.0f,1.0f
+				-0.5f, -0.5f, 0.0f, 0.0f,0.0f,
+				0.5f, -0.5f, 0.0f,1.0f,0.0f,
+				0.5f, 0.5f, 0.0f,1.0f,1.0f,
+				-0.5f,0.5f,0.0f,0.0f,1.0f
 			};
 
 			//create VBO
@@ -52,7 +29,7 @@ public:
 			//buffer layout
 			Explore::BufferLayout layout = {
 				{"aPos",   Explore::ShaderDataType::Float3},
-				{"aColor", Explore::ShaderDataType::Float4}
+				{"aTexCoor", Explore::ShaderDataType::Float2}
 			};
 			vertexBuffer->SetLayout(layout);
 
@@ -65,6 +42,7 @@ public:
 			//index data
 			uint32_t indices[] = { //index begins from 0 
 				0, 1, 2, //first triangle
+				2, 3, 0 //second triangle
 			};
 
 			//create EBO
@@ -74,6 +52,56 @@ public:
 			//bind EBO to VAO
 			m_VertexArray->SetIndexBuffer(indexBuffer);
 		}
+
+		//shader
+		const std::string vertexSrc = "#version 330 core\n"
+			"layout (location = 0) in vec3 aPos;\n"
+			"layout (location = 1) in vec2 aTexCoor;\n"
+			"uniform mat4 u_ProjectionViewMatrix;\n"
+			"uniform mat4 u_ModelMatrix;\n"
+			"void main()\n"
+			"{\n"
+			"   gl_Position = u_ProjectionViewMatrix * u_ModelMatrix * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+			"}\0";
+
+		const std::string fragSrc = "#version 330 core\n"
+			"out vec4 FragColor;\n"
+			"uniform vec3 u_color;\n"
+			"void main()\n"
+			"{\n"
+			"   FragColor = vec4(u_color,1.0f);\n"
+			"}\0";
+
+		m_Shader.reset(Explore::Shader::Create(vertexSrc, fragSrc));
+
+		const std::string TexVertexSrc = "#version 330 core\n"
+			"layout (location = 0) in vec3 aPos;\n"
+			"layout (location = 1) in vec2 aTexCoor;\n"
+			"uniform mat4 u_ProjectionViewMatrix;\n"
+			"uniform mat4 u_ModelMatrix;\n"
+			"out vec2 vTexCoor;\n"
+			"void main()\n"
+			"{\n"
+			"   gl_Position = u_ProjectionViewMatrix * u_ModelMatrix * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+			"	vTexCoor = aTexCoor;\n"
+			"}\0";
+
+		const std::string TexFragSrc = "#version 330 core\n"
+			"out vec4 FragColor;\n"
+			"in vec2 vTexCoor;\n"
+			"uniform sampler2D u_Texture;\n"
+			"void main()\n"
+			"{\n"
+			"   FragColor = texture(u_Texture,vTexCoor);\n"
+			"}\0";
+
+		m_TextureShader.reset(Explore::Shader::Create(TexVertexSrc, TexFragSrc));
+
+		std::string path = "basketball.jpg";
+		m_Texture.reset(Explore::Texture2D::Create(path));
+
+		std::string path2 = "grass.png";
+		m_AlphaTexture.reset(Explore::Texture2D::Create(path2));
 	}
 
 	void OnUpdate(Timestep ts) override
@@ -100,6 +128,14 @@ public:
 				Explore::Renderer::Submit(m_Shader, m_VertexArray,transform); //provide shader and VAO containing the reference of VBO and EAO
 			}
 		}
+
+		m_Texture->Bind();
+		m_TextureShader->Bind();
+		std::dynamic_pointer_cast<Explore::OpenGLShader>(m_TextureShader)->UploadUnifromInt("u_Texture", 0);
+		Explore::Renderer::Submit(m_TextureShader, m_VertexArray,glm::mat4(1.0f));
+
+		m_AlphaTexture->Bind();
+		Explore::Renderer::Submit(m_TextureShader, m_VertexArray, glm::mat4(1.0f));
 
 		Explore::Renderer::EndScene();
 	}
@@ -183,7 +219,7 @@ public:
 	}
 
 private:
-	Explore::Ref<Explore::Shader> m_Shader;
+	Explore::Ref<Explore::Shader> m_Shader,m_TextureShader;
 
 	Explore::Ref<Explore::VertexArray> m_VertexArray;
 
@@ -198,6 +234,8 @@ private:
 	float m_CameraRotateSpeed = 20.0f;
 
 	glm::vec3 m_TriColor = { 1.0f,0.0f,0.0f };
+
+	Explore::Ref<Explore::Texture> m_Texture,m_AlphaTexture;
 };
 
 class Sandbox : public Explore::Application

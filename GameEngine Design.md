@@ -263,5 +263,9 @@ vertexPos * model * view * proj
 
 代码层面上，material class会接受一个shader参数，并且支持修改参数；同时会引入材质实例，其继承材质，用于区分base material，材质实例是材质的一个实例，继承同一个base material的不同材质实例的uniform值不同；其次，后续mesh接受材质实例，用于修改材质，并且渲染提交时不再是shader，而是材质；
 
-资产管理：考虑到后续渲染器会采用延迟渲染，以及多线程，因此整个资产管理（如材质/shader/vertexArray等）需要考虑内存管理、线程安全；目前堆栈分配的资产采用shader_prt进行引用计数管理；
+**资产管理：**考虑到后续渲染器会采用延迟渲染，以及多线程，因此整个资产管理（如材质/shader/vertexArray等）需要考虑内存管理、线程安全；目前堆栈分配的资产采用shader_prt进行引用计数管理；
+
+**Texture:** 本质上是一段数据集合buffer，可以去采样它获取数据；常见的应用，包括加载外部的贴图数据放入Texture，或者在Texture中存放预计算的数据，如LookUp Texture；
+
+texture相关属性：mipmap多级纹理；filter贴图的过滤方式，决定了uv坐标在贴图中的采样方式；Alpha值：在混合中决定了自身颜色的占比；
 
