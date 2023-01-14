@@ -269,3 +269,5 @@ vertexPos * model * view * proj
 
 texture相关属性：mipmap多级纹理；filter贴图的过滤方式，决定了uv坐标在贴图中的采样方式；Alpha值：在混合中决定了自身颜色的占比；
 
+**shaderlibrary:**  本质上是一个shader数组，存放已有的shader，并且提供接口进行访问；
+

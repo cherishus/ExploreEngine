@@ -135,6 +135,13 @@
       <Project>{9AB7A58F-0678-21C6-CFB2-6A433B3266A2}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\basketball.jpg" />
+    <Image Include="assets\textures\grass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\texture.glsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

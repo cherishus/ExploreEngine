@@ -4,16 +4,22 @@
 
 namespace Explore
 {
+	typedef unsigned int GLenum;
+
 	class OpenGLShader : public Shader
 	{
 	public:
-		OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
+		OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
+
+		OpenGLShader(const std::string& filePath);
 
 		virtual ~OpenGLShader();
 
 		virtual void Bind() override;
 
 		virtual void UnBind() override;
+
+		virtual std::string GetName() override { return m_name; }
 
 		//--------------------------------fuctions for change unifrom-------------------------------
 		void UploadUnifromInt(std::string name, int value);
@@ -31,6 +37,17 @@ namespace Explore
 		void UploadUnifromMat4(std::string name, const glm::mat4& value);
 
 	private:
-		uint32_t m_RendererId;
+		std::string ReadFile(const std::string& path);
+
+		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
+
+		void Compile(const std::unordered_map<GLenum, std::string>& shaderSources);
+
+		std::string GetShaderNameFromPath(const std::string& path);
+
+	private:
+		uint32_t m_ShaderId; //id points to shaderProgram in GPU
+
+		std::string m_name;
 	};
 }
