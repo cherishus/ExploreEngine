@@ -1,7 +1,7 @@
 #include "enginepch.h"
 #include "OpenGLContext.h"
-#include "Explore/Log.h"
-#include "Explore/Core.h"
+#include "Explore/Core/Log.h"
+#include "Explore/Core/Core.h"
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 

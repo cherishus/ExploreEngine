@@ -7,7 +7,7 @@
 class ExampleLayer : public Explore::Layer
 {
 public:
-	ExampleLayer() : Layer("ExampleLayer"), m_Camera(-1.0f, 1.0f, -1.0f, 1.0f)
+	ExampleLayer() : Layer("ExampleLayer"),m_CameraController(1.7f,true)
 	{
 		//bind VAO
 		m_VertexArray.reset(Explore::VertexArray::Create());
@@ -86,12 +86,12 @@ public:
 
 	void OnUpdate(Timestep ts) override
 	{
-		OnUpdateCamera(ts);
+		m_CameraController.OnUpdate(ts);
 
 		Explore::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Explore::RenderCommand::Clear();
 
-		Explore::Renderer::BeginScene(m_Camera);
+		Explore::Renderer::BeginScene(m_CameraController.GetCamera());
 		
 		//change u_color in fragmentShader
 		auto& colorShader = m_ShaderLibraray.Get("color");
@@ -130,74 +130,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnUpdateCamera(Timestep ts)
-	{
-		//control camera by input polling
-		if (Explore::Input::IsKeyPressed(EXPLORE_KEY_LEFT))
-		{
-			m_CameraLocation.x -= m_CameraMoveSpeed * ts;
-		}
-		if (Explore::Input::IsKeyPressed(EXPLORE_KEY_RIGHT))
-		{
-			m_CameraLocation.x += m_CameraMoveSpeed * ts;
-		}
-		if (Explore::Input::IsKeyPressed(EXPLORE_KEY_DOWN))
-		{
-			m_CameraLocation.y -= m_CameraMoveSpeed * ts;
-		}
-		if (Explore::Input::IsKeyPressed(EXPLORE_KEY_UP))
-		{
-			m_CameraLocation.y += m_CameraMoveSpeed * ts;
-		}
-		if (Explore::Input::IsKeyPressed(EXPLORE_KEY_A))
-		{
-			m_CameraRotation += m_CameraRotateSpeed * ts;
-		}
-		if (Explore::Input::IsKeyPressed(EXPLORE_KEY_D))
-		{
-			m_CameraRotation -= m_CameraRotateSpeed * ts;
-		}
-
-		m_Camera.SetLocation(m_CameraLocation);
-		m_Camera.SetRotaion(m_CameraRotation);
-	}
-
 	void OnEvent(Explore::Event& event) override
 	{
-		//control camera by key event
-		//Explore::EventDispatcher eventDispathcer(event);
-		//eventDispathcer.Dispatch<Explore::KeyPressedEvent>(EXPLORE_BIND_EVENT_FN(ExampleLayer::OnKeyEvent));
-	}
-
-	bool OnKeyEvent(Explore::KeyPressedEvent& event)
-	{
-		if (event.GetKeycode() == EXPLORE_KEY_LEFT)
-		{
-			m_CameraLocation.x -= m_CameraMoveSpeed;
-		}
-		else if (event.GetKeycode() == EXPLORE_KEY_RIGHT)
-		{
-			m_CameraLocation.x += m_CameraMoveSpeed;
-		}
-
-		if (event.GetKeycode() == EXPLORE_KEY_DOWN)
-		{
-			m_CameraLocation.y -= m_CameraMoveSpeed;
-		}
-		else if (event.GetKeycode() == EXPLORE_KEY_UP)
-		{
-			m_CameraLocation.y += m_CameraMoveSpeed;
-		}
-
-		if (event.GetKeycode() == EXPLORE_KEY_A)
-		{
-			m_CameraRotation -= m_CameraRotateSpeed;
-		}
-		else if (event.GetKeycode() == EXPLORE_KEY_D)
-		{
-			m_CameraRotation += m_CameraRotateSpeed;
-		}
-		return false;
+		m_CameraController.OnEvent(event);
 	}
 
 private:
@@ -205,15 +140,7 @@ private:
 
 	Explore::Ref<Explore::VertexArray> m_VertexArray;
 
-	Explore::OrthographicCamera m_Camera;
-
-	glm::vec3 m_CameraLocation = { 0.0f,0.0f,0.0f };
-
-	float m_CameraMoveSpeed = 1.0f;
-
-	float m_CameraRotation = 0.0f;
-
-	float m_CameraRotateSpeed = 20.0f;
+	Explore::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_TriColor = { 1.0f,0.0f,0.0f };
 

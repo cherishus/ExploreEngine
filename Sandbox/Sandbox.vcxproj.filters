@@ -20,10 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\textures\basketball.jpg">
+    <Image Include="assets\textures\grass.png">
       <Filter>资源文件</Filter>
     </Image>
-    <Image Include="assets\textures\grass.png">
+    <Image Include="assets\textures\basketball.jpg">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

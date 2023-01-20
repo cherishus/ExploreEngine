@@ -10,6 +10,11 @@ namespace Explore
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
+	void OpenGLRendererAPI::SetViewport(uint32_t xOffset, uint32_t yOffset, uint32_t width, uint32_t height)
+	{
+		glViewport(xOffset, yOffset, width, height); //tell openGL the size of render area
+	}
+
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
 	{
 		glClearColor(color.r, color.g, color.b, color.a);

@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Events/Event.h"
+#include "Explore/Events/Event.h"
 #include "Explore/Core/Timestep.h"
 
 namespace Explore

@@ -3,7 +3,7 @@
 #include "Explore/Events/ApplicationEvent.h"
 #include "Log.h"
 #include "input.h"
-#include "Renderer/Renderer.h"
+#include "Explore/Renderer/Renderer.h"
 #include "GLFW/glfw3.h"
 
 namespace Explore
@@ -31,7 +31,8 @@ namespace Explore
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		EXPLORE_CORE_LOG(trace, "App Event: {0}", e);
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		//EXPLORE_CORE_LOG(trace, "App Event: {0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -59,6 +60,19 @@ namespace Explore
 		return true;
 	}
 
+	bool Application::OnWindowResize(Event& e)
+	{
+		WindowResizeEvent& re = (WindowResizeEvent&)e;
+		if (re.GetWidth() == 0 || re.GetHeight() == 0)
+		{
+			m_Minimize = true;
+			return false;
+		}
+		m_Minimize = false;
+		Renderer::OnWindowResize(re.GetWidth(), re.GetHeight());
+		return false;
+	}
+
 	void Application::Run()
 	{
 		while (m_Running)
@@ -67,9 +81,12 @@ namespace Explore
 			m_Timestep = currentTime - m_LastTime;
 			m_LastTime = currentTime;
 
-			for (Layer* layer : m_LayerStack)
+			if (!m_Minimize)
 			{
-				layer->OnUpdate(m_Timestep);
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnUpdate(m_Timestep);
+				}
 			}
 
 			m_ImGuiLayer->Begin();
@@ -80,9 +97,6 @@ namespace Explore
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
-
-			auto MousePos = Input::GetMousePosition();
-			//EXPLORE_CORE_LOG(trace, "MousePos: {0},{1}", MousePos.first, MousePos.second);
 		}
 	}
 }

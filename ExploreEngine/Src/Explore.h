@@ -1,11 +1,11 @@
 #pragma once
 
 //Using by Sandbox Applications
-#include "Explore/Core.h"
-#include "Explore/Application.h"
-#include "Explore/input.h"
-#include "Explore/KeyCode.h"
-#include "Explore/Log.h"
+#include "Explore/Core/Core.h"
+#include "Explore/Core/Application.h"
+#include "Explore/Core/input.h"
+#include "Explore/Core/KeyCode.h"
+#include "Explore/Core/Log.h"
 #include "Explore/ImGui/ImGuiLayer.h"
 #include "Explore/Core/Timestep.h"
 
@@ -13,8 +13,9 @@
 #include "Explore/Renderer/Renderer.h"
 #include "Explore/Renderer/RenderCommand.h"
 #include "Explore/Renderer/Shader.h"
-#include "Explore/Renderer/OrthographicCamera.h"
 #include "Explore/Renderer/Texture.h"
+#include "Explore/Renderer/OrthographicCamera.h"
+#include "Explore/Renderer/OrthographicCameraController.h"
 
 //entry point
-#include "Explore/Entrypoint.h"
+#include "Explore/Core/Entrypoint.h"

@@ -1,6 +1,6 @@
 #include "enginepch.h"
 #include "OpenGLShader.h"
-#include "Explore/Log.h"
+#include "Explore/Core/Log.h"
 #include "glm/gtc/type_ptr.hpp"
 #include "glad/glad.h"
 
@@ -48,7 +48,7 @@ namespace Explore
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
-			uint32_t size = in.tellg(); //get size
+			uint32_t size = (uint32_t)in.tellg(); //get size
 			result.resize(size);
 			in.seekg(0, std::ios::beg);
 			in.read(&result[0], result.size()); //read file

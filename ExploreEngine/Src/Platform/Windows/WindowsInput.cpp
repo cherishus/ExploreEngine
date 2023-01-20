@@ -1,6 +1,6 @@
 #include "enginepch.h"
 #include "WindowsInput.h"
-#include "Explore/Application.h"
+#include "Explore/Core/Application.h"
 #include "GLFW/glfw3.h"
 
 namespace Explore

@@ -1,6 +1,6 @@
 #include "enginepch.h"
 #include "OpenGLTexture.h"
-#include "Explore/Log.h"
+#include "Explore/Core/Log.h"
 #include "glad/glad.h"
 #include "stb_image.h"
 

@@ -2,11 +2,11 @@
 #include "Core.h"
 #include "Window.h"
 #include "LayerStack.h"
-#include "ImGui/ImGuiLayer.h"
-#include "Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-#include "Renderer/OrthographicCamera.h"
+#include "Explore/ImGui/ImGuiLayer.h"
+#include "Explore/Renderer/Shader.h"
+#include "Explore/Renderer/Buffer.h"
+#include "Explore/Renderer/VertexArray.h"
+#include "Explore/Renderer/OrthographicCamera.h"
 
 namespace Explore
 {
@@ -32,12 +32,16 @@ namespace Explore
 	private:
 		bool OnWindowClose(Event& e);
 
+		bool OnWindowResize(Event& e);
+
 	private:
 		std::unique_ptr<Window> m_Window;
 
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
+
+		bool m_Minimize = false;
 
 		LayerStack m_LayerStack;
 

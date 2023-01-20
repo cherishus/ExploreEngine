@@ -8,6 +8,8 @@ namespace Explore
 	public:
 		OrthographicCamera(float left,float right,float bottom, float top);
 
+		void SetProjection(float left, float right, float bottom, float top);
+
 		void SetLocation(const glm::vec3& location) { m_Location = location; ReCalculateViewMatrix(); }
 
 		glm::vec3 GetLocation() { return m_Location; }

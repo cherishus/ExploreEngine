@@ -57,17 +57,35 @@
     <ClInclude Include="Src\Explore.h">
       <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Explore\Application.h">
-      <Filter>Src\Explore</Filter>
+    <ClInclude Include="Src\Explore\Core\Application.h">
+      <Filter>Src\Explore\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Explore\Core.h">
-      <Filter>Src\Explore</Filter>
+    <ClInclude Include="Src\Explore\Core\Core.h">
+      <Filter>Src\Explore\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Core\Entrypoint.h">
+      <Filter>Src\Explore\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Core\KeyCode.h">
+      <Filter>Src\Explore\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Core\Layer.h">
+      <Filter>Src\Explore\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Core\LayerStack.h">
+      <Filter>Src\Explore\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Core\Log.h">
+      <Filter>Src\Explore\Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Explore\Core\Timestep.h">
       <Filter>Src\Explore\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Explore\Entrypoint.h">
-      <Filter>Src\Explore</Filter>
+    <ClInclude Include="Src\Explore\Core\Window.h">
+      <Filter>Src\Explore\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Core\input.h">
+      <Filter>Src\Explore\Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Explore\Events\ApplicationEvent.h">
       <Filter>Src\Explore\Events</Filter>
@@ -84,18 +102,6 @@
     <ClInclude Include="Src\Explore\ImGui\ImGuiLayer.h">
       <Filter>Src\Explore\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Explore\KeyCode.h">
-      <Filter>Src\Explore</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Explore\Layer.h">
-      <Filter>Src\Explore</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Explore\LayerStack.h">
-      <Filter>Src\Explore</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Explore\Log.h">
-      <Filter>Src\Explore</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\Buffer.h">
       <Filter>Src\Explore\Renderer</Filter>
     </ClInclude>
@@ -103,6 +109,9 @@
       <Filter>Src\Explore\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\OrthographicCamera.h">
+      <Filter>Src\Explore\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Renderer\OrthographicCameraController.h">
       <Filter>Src\Explore\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\RenderCommand.h">
@@ -122,12 +131,6 @@
     </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\VertexArray.h">
       <Filter>Src\Explore\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Explore\Window.h">
-      <Filter>Src\Explore</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Explore\input.h">
-      <Filter>Src\Explore</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\OpenGl\OpenGLBuffer.h">
       <Filter>Src\Platform\OpenGl</Filter>
@@ -1409,8 +1412,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Explore\Application.cpp">
-      <Filter>Src\Explore</Filter>
+    <ClCompile Include="Src\Explore\Core\Application.cpp">
+      <Filter>Src\Explore\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Explore\Core\Layer.cpp">
+      <Filter>Src\Explore\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Explore\Core\LayerStack.cpp">
+      <Filter>Src\Explore\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Explore\Core\Log.cpp">
+      <Filter>Src\Explore\Core</Filter>
     </ClCompile>
     <ClCompile Include="Src\Explore\ImGui\ImGuiBuild.cpp">
       <Filter>Src\Explore\ImGui</Filter>
@@ -1418,19 +1430,13 @@
     <ClCompile Include="Src\Explore\ImGui\ImGuiLayer.cpp">
       <Filter>Src\Explore\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Explore\Layer.cpp">
-      <Filter>Src\Explore</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Explore\LayerStack.cpp">
-      <Filter>Src\Explore</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Explore\Log.cpp">
-      <Filter>Src\Explore</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Explore\Renderer\Buffer.cpp">
       <Filter>Src\Explore\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Explore\Renderer\OrthographicCamera.cpp">
+      <Filter>Src\Explore\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Explore\Renderer\OrthographicCameraController.cpp">
       <Filter>Src\Explore\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Explore\Renderer\RenderCommand.cpp">

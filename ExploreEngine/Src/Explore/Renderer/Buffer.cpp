@@ -2,7 +2,7 @@
 #include "Buffer.h"
 #include "Platform/OpenGl/OpenGLBuffer.h"
 #include "Renderer.h"
-#include "Explore/Log.h"
+#include "Explore/Core/Log.h"
 
 namespace Explore
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Explore/Core.h"
+#include "Explore/Core/Core.h"
 #include <string>
 
 namespace Explore

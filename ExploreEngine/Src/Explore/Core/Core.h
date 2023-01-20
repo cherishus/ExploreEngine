@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <functional>
 
 #ifdef  EXPLORE_PLATFORM_WINDOWS
 	#if HZ_DYNAMIC_LINK

@@ -1,5 +1,5 @@
 #pragma once
-#include "Explore/Window.h"
+#include "Explore/Core/Window.h"
 #include "Explore/Renderer/GraphicsContext.h"
 #include "GLFW/glfw3.h"
 
