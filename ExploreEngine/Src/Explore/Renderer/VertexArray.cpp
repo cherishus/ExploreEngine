@@ -5,7 +5,7 @@
 
 namespace Explore
 {
-	VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		RendererAPI::API renderApi = Renderer::GetAPI();
 		switch (renderApi)
@@ -17,7 +17,7 @@ namespace Explore
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return new OpenGLVertexArray();
+				return std::make_shared<OpenGLVertexArray>();
 			}
 		}
 		EXPLORE_ASSERT(false, "RendererAPI Is Unknown, Create VertexArray Failed!");

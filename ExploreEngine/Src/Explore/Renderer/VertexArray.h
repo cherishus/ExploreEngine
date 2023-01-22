@@ -21,6 +21,6 @@ namespace Explore
 
 		virtual Ref<IndexBuffer>& GetIndexBuffer() = 0; 
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 	};
 }

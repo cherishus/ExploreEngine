@@ -120,7 +120,7 @@ namespace Explore
 
 		virtual BufferLayout& GetLayout() = 0;
 
-		static VertexBuffer* Create(float* vertices, uint32_t size);
+		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
 	};
 
 	class IndexBuffer
@@ -134,6 +134,6 @@ namespace Explore
 
 		virtual uint32_t GetCount() = 0;
 
-		static IndexBuffer* Create(uint32_t* indices, uint32_t count);
+		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
 	};
 }

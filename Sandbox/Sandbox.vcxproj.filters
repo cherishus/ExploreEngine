@@ -18,6 +18,9 @@
     <ClCompile Include="Src\SandboxApp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Sandbox2D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\grass.png">
@@ -29,5 +32,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\texture.glsl" />
+    <None Include="assets\shaders\flatcolor.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Sandbox2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,8 +1,10 @@
 #include "Explore.h"
+#include "Explore/Core/Entrypoint.h"
 #include "Platform/OpenGl/OpenGLShader.h"
 #include "imgui.h"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
+#include "Sandbox2D.h"
 
 class ExampleLayer : public Explore::Layer
 {
@@ -10,7 +12,7 @@ public:
 	ExampleLayer() : Layer("ExampleLayer"),m_CameraController(1.7f,true)
 	{
 		//bind VAO
-		m_VertexArray.reset(Explore::VertexArray::Create());
+		m_VertexArray = Explore::VertexArray::Create();
 
 		//vertex buffer
 		{
@@ -24,7 +26,7 @@ public:
 
 			//create VBO
 			Explore::Ref<Explore::VertexBuffer> vertexBuffer;
-			vertexBuffer.reset(Explore::VertexBuffer::Create(vertices, sizeof(vertices)));
+			vertexBuffer = Explore::VertexBuffer::Create(vertices, sizeof(vertices));
 
 			//buffer layout
 			Explore::BufferLayout layout = {
@@ -47,7 +49,7 @@ public:
 
 			//create EBO
 			Explore::Ref<Explore::IndexBuffer> indexBuffer;
-			indexBuffer.reset(Explore::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+			indexBuffer = Explore::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 
 			//bind EBO to VAO
 			m_VertexArray->SetIndexBuffer(indexBuffer);
@@ -152,7 +154,8 @@ class Sandbox : public Explore::Application
 public:
 	Sandbox() 
 	{
-		PushLayer(new ExampleLayer);
+		//PushLayer(new ExampleLayer);
+		PushLayer(new Sandbox2D);
 	}
 
 	~Sandbox() {}

@@ -11,6 +11,7 @@
 
 //Render function
 #include "Explore/Renderer/Renderer.h"
+#include "Explore/Renderer/Renderer2D.h"
 #include "Explore/Renderer/RenderCommand.h"
 #include "Explore/Renderer/Shader.h"
 #include "Explore/Renderer/Texture.h"
@@ -18,4 +19,3 @@
 #include "Explore/Renderer/OrthographicCameraController.h"
 
 //entry point
-#include "Explore/Core/Entrypoint.h"
