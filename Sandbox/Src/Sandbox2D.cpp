@@ -13,6 +13,8 @@ Sandbox2D::Sandbox2D()
 void Sandbox2D::OnAttach()
 {
 	Explore::Renderer2D::Init();
+	std::string path = "assets/textures/basketball.jpg";
+	m_Texture = Explore::Texture2D::Create(path);
 }
 
 void Sandbox2D::OnDetach()
@@ -28,7 +30,9 @@ void Sandbox2D::OnUpdate(Timestep ts)
 	Explore::RenderCommand::Clear();
 
 	Explore::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	Explore::Renderer2D::DrawQuad({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f }, m_Color);
+	Explore::Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f }, { 0.5f,0.5f }, m_Color);
+	Explore::Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, { 0.5f,0.5f}, m_Color);
+	Explore::Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f }, { 5.0f,5.0f }, m_Texture);
 	Explore::Renderer2D::EndScene();
 }
 

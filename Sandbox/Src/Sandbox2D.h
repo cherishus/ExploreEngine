@@ -21,5 +21,7 @@ public:
 private:
 	Explore::OrthographicCameraController m_CameraController;
 
+	Explore::Ref<Explore::Texture> m_Texture;
+
 	glm::vec4 m_Color = { 1.0f,0.0f,0.0f,1.0f };
 };

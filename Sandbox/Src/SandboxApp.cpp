@@ -1,6 +1,5 @@
 #include "Explore.h"
 #include "Explore/Core/Entrypoint.h"
-#include "Platform/OpenGl/OpenGLShader.h"
 #include "imgui.h"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
@@ -80,10 +79,10 @@ public:
 		Explore::Ref<Explore::Shader> textureShader = m_ShaderLibraray.Load("assets/shaders/texture.glsl");
 
 		std::string path = "assets/textures/basketball.jpg";
-		m_Texture.reset(Explore::Texture2D::Create(path));
+		m_Texture = Explore::Texture2D::Create(path);
 
 		std::string path2 = "assets/textures/grass.png";
-		m_AlphaTexture.reset(Explore::Texture2D::Create(path2));
+		m_AlphaTexture = Explore::Texture2D::Create(path2);
 	}
 
 	void OnUpdate(Timestep ts) override
@@ -98,7 +97,7 @@ public:
 		//change u_color in fragmentShader
 		auto& colorShader = m_ShaderLibraray.Get("color");
 		colorShader->Bind();
-		std::dynamic_pointer_cast<Explore::OpenGLShader>(colorShader)->UploadUnifromFloat3("u_color", m_TriColor);
+		colorShader->SetFloat3("u_color", m_TriColor);
 		
 		//change model transform
 		for (int y=0;y<3;y++)
@@ -115,7 +114,7 @@ public:
 		auto& textureShader = m_ShaderLibraray.Get("texture");
 		m_Texture->Bind();
 		textureShader->Bind();
-		std::dynamic_pointer_cast<Explore::OpenGLShader>(textureShader)->UploadUnifromInt("u_Texture", 0);
+		textureShader->SetInt("u_Texture", 0);
 		Explore::Renderer::Submit(textureShader, m_VertexArray,glm::mat4(1.0f));
 
 		m_AlphaTexture->Bind();

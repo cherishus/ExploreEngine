@@ -1,7 +1,6 @@
 #include "enginepch.h"
 #include "Renderer.h"
 #include "Explore/Core/Log.h"
-#include "Platform/OpenGl/OpenGLShader.h"
 
 namespace Explore
 {
@@ -30,11 +29,12 @@ namespace Explore
 
 	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4 transform)
 	{
-		//update unifrom in shader
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUnifromMat4("u_ProjectionViewMatrix",s_SceneData.viewProjectionMatrix);
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUnifromMat4("u_ModelMatrix",transform);
 		shader->Bind(); //bind shader
+		//update unifrom in shader
+		shader->SetMat4("u_ProjectionViewMatrix",s_SceneData.viewProjectionMatrix);
+		shader->SetMat4("u_ModelMatrix",transform);
 
+		vertexArray->Bind();
 		RenderCommand::DrawIndexd(vertexArray);//bind buffer about mesh
 	}
 }
