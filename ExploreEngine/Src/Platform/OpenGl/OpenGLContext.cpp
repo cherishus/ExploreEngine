@@ -9,11 +9,13 @@ namespace Explore
 {
 	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle):m_WindowHandle(windowHandle)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		EXPLORE_ASSERT(m_WindowHandle, "Window Handle is nullptr!");
 	}
 
 	void OpenGLContext::Init()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		//make context for openGL
 		glfwMakeContextCurrent(m_WindowHandle);
 		//init glad
@@ -30,6 +32,7 @@ namespace Explore
 
 	void OpenGLContext::SwapBuffers()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		//swap buffer for openGL
 		glfwSwapBuffers(m_WindowHandle);
 	}

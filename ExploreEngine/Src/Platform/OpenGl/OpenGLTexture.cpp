@@ -7,6 +7,7 @@ namespace Explore
 {
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		int width, height, channel;
 		stbi_set_flip_vertically_on_load(1); //flip vertically
 		unsigned char* data = stbi_load(path.c_str(), &width, &height, &channel, 0);
@@ -50,6 +51,7 @@ namespace Explore
 	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
 		:m_Width(width),m_Height(height)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		m_InternalFormat = GL_RGBA8, m_DataFormat = GL_RGBA;
 		EXPLORE_ASSERT(m_InternalFormat & m_DataFormat, "texture format not supported!");
 
@@ -67,11 +69,13 @@ namespace Explore
 
 	OpenGLTexture2D::~OpenGLTexture2D()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glDeleteTextures(1, &m_TextureID);
 	}
 	
 	void OpenGLTexture2D::Bind(uint32_t slot)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		//slotIndex is meaning texture unit
 		glBindTextureUnit(slot, m_TextureID);
 	}

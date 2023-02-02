@@ -13,6 +13,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Explore/Debug/Instrumentor.h"
+
 #ifdef EXPLORE_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

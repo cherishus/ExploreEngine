@@ -8,6 +8,7 @@
 #include "Explore/Core/Log.h"
 #include "Explore/ImGui/ImGuiLayer.h"
 #include "Explore/Core/Timestep.h"
+#include "Explore/Debug/Instrumentor.h"
 
 //Render function
 #include "Explore/Renderer/Renderer.h"

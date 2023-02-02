@@ -22,6 +22,7 @@ namespace Explore
 	OpenGLShader::OpenGLShader(const std::string& name,const std::string& vertexSrc, const std::string& fragmentSrc)\
 		:m_name(name)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		std::unordered_map<GLenum, std::string> shaderSources;
 		shaderSources[GL_VERTEX_SHADER] = vertexSrc;
 		shaderSources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -30,6 +31,7 @@ namespace Explore
 
 	OpenGLShader::OpenGLShader(const std::string& filePath)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		m_name = GetShaderNameFromPath(filePath);
 		std::string source = ReadFile(filePath);
 		std::unordered_map<GLenum, std::string> shaderSources = PreProcess(source);
@@ -38,11 +40,13 @@ namespace Explore
 
 	OpenGLShader::~OpenGLShader()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glDeleteProgram(m_ShaderId);
 	}
 
 	std::string OpenGLShader::ReadFile(const std::string& path)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		std::string result;
 		std::ifstream in(path, std::ios::in | std::ios::binary); //in binary mode
 		if (in)
@@ -63,6 +67,7 @@ namespace Explore
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		std::unordered_map<GLenum, std::string> shaderSources;
 		const char* typeToken = "#type";
 		size_t typeTokenLength = strlen(typeToken);
@@ -87,6 +92,7 @@ namespace Explore
 
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		//create shader program
 		unsigned int ShaderProgram = glCreateProgram();
 		m_ShaderId = ShaderProgram;
@@ -136,6 +142,7 @@ namespace Explore
 
 	std::string OpenGLShader::GetShaderNameFromPath(const std::string& path)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		size_t lastSlash = path.find_last_of("/\\"); //find character '/' or character '\' in path, not find string "/\\" in path
 		lastSlash = lastSlash != std::string::npos ? (lastSlash + 1) : 0;
 		size_t lastDot = path.rfind(".");
@@ -145,31 +152,37 @@ namespace Explore
 
 	void OpenGLShader::Bind()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glUseProgram(m_ShaderId);
 	}
 
 	void OpenGLShader::UnBind()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glUseProgram(0);
 	}
 
 	void OpenGLShader::SetInt(const std::string& name, int value)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		UploadUnifromInt(name, value);
 	}
 
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		UploadUnifromFloat3(name, value);
 	}
 
 	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		UploadUnifromFloat4(name, value);
 	}
 
 	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		UploadUnifromMat4(name, value);
 	}
 
@@ -211,7 +224,7 @@ namespace Explore
 
 	void OpenGLShader::UploadUnifromMat4(std::string name, const glm::mat4& value)
 	{
-		int location = glGetUniformLocation(m_ShaderId, name.c_str());
+		int	location = glGetUniformLocation(m_ShaderId, name.c_str());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
 }

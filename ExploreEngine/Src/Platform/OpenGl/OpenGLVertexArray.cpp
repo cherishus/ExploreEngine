@@ -27,27 +27,32 @@ namespace Explore
 
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glGenVertexArrays(1, &m_VertexArrayID);
 		glBindVertexArray(m_VertexArrayID);
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glDeleteVertexArrays(1, &m_VertexArrayID);
 	}
 
 	void OpenGLVertexArray::Bind()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glBindVertexArray(m_VertexArrayID);
 	}
 
 	void OpenGLVertexArray::UnBind()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glBindVertexArray(0);
 	}
 
 	void OpenGLVertexArray::AddVertexBuffer(Ref<VertexBuffer> vertexBuffer)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		//Add reference of vertexBuffer to VAO
 		glBindVertexArray(m_VertexArrayID);
 		vertexBuffer->Bind();
@@ -73,6 +78,7 @@ namespace Explore
 
 	void OpenGLVertexArray::SetIndexBuffer(Ref<IndexBuffer> indexBuffer)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glBindVertexArray(m_VertexArrayID);
 		indexBuffer->Bind(); //Add reference of indexBuffer to VAO
 		

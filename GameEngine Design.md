@@ -282,3 +282,10 @@ plan:
 1)batch rendering; 2)Animation; 3)UI layout; 4)HDR; 5)particle system; 6)post processing;
 
 7)Interaction; 8)Scripting; 9)ECS；
+
+#### Profile
+
+**性能分析：**类似于IDE的性能分析工具，包括cpu使用率分析、内存使用分析等；
+
+**关于引擎性能分析模块，**目前打算在引擎内实现一个简单的MiniProfiling，实现范围内时间计算，整体思路包括：抓取数据以及可视化数据；其中抓取时间数据底层本质上采用C++时钟差实现，而可视化采用google tracing实现，提供必要的json文件；
+

@@ -9,6 +9,7 @@ namespace Explore
 
 	void Renderer2D::Init()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		s_Renderer2DData = new Renderer2DStorage;
 
 		s_Renderer2DData->QuadVertexArray = VertexArray::Create();
@@ -54,18 +55,20 @@ namespace Explore
 	
 	void Renderer2D::Shutdown()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		delete s_Renderer2DData;
 	}
 
 	void Renderer2D::BeginScene(OrthographicCamera& camera)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		s_Renderer2DData->TextureShader->Bind();
 		s_Renderer2DData->TextureShader->SetMat4("u_ProjectionViewMatrix", camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
 	{
-
+		EXPLORE_PROFILE_FUNCTION()
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
@@ -75,6 +78,7 @@ namespace Explore
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		s_Renderer2DData->TextureShader->Bind();
 		s_Renderer2DData->TextureShader->SetFloat4("u_color", color);
 		
@@ -96,6 +100,7 @@ namespace Explore
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture>& texture)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		s_Renderer2DData->TextureShader->Bind();
 		texture->Bind();
 		s_Renderer2DData->TextureShader->SetInt("u_Texture", 0);

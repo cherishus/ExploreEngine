@@ -1411,6 +1411,7 @@
       <Filter>ThirdLib\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\Renderer2D.h" />
+    <ClInclude Include="Src\Explore\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Core\Application.cpp">

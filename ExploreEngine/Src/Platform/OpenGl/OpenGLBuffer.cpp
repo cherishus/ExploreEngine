@@ -7,6 +7,7 @@ namespace Explore
 	//--------------------------Vertex Buffer----------------------------------------------------
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glGenBuffers(1, &m_VertexBufferID);
 		//bind VBO
 		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBufferID);
@@ -16,16 +17,19 @@ namespace Explore
 
 	OpenGLVertexBuffer::~OpenGLVertexBuffer()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glDeleteBuffers(1, &m_VertexBufferID);
 	}
 
 	void OpenGLVertexBuffer::Bind()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBufferID);
 	}
 
 	void OpenGLVertexBuffer::UnBind()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
@@ -42,6 +46,7 @@ namespace Explore
 	//--------------------------Index Buffer----------------------------------------------------
 	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count) : m_Count(count)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glGenBuffers(1, &m_IndexBufferID);
 		//bind EBO
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferID);
@@ -50,16 +55,19 @@ namespace Explore
 
 	OpenGLIndexBuffer::~OpenGLIndexBuffer()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glDeleteBuffers(1, &m_IndexBufferID);
 	}
 
 	void OpenGLIndexBuffer::Bind()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferID);
 	}
 
 	void OpenGLIndexBuffer::UnBind()
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 }

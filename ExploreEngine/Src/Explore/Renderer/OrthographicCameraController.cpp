@@ -14,6 +14,7 @@ namespace Explore
 
 	void OrthographicCameraController::OnUpdate(Timestep ts)
 	{
+		EXPLORE_PROFILE_FUNCTION()
 		//control camera by input polling
 		if (Explore::Input::IsKeyPressed(EXPLORE_KEY_A))
 		{

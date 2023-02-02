@@ -151,6 +151,7 @@
     <ClInclude Include="Src\Explore\Core\Timestep.h" />
     <ClInclude Include="Src\Explore\Core\Window.h" />
     <ClInclude Include="Src\Explore\Core\input.h" />
+    <ClInclude Include="Src\Explore\Debug\Instrumentor.h" />
     <ClInclude Include="Src\Explore\Events\ApplicationEvent.h" />
     <ClInclude Include="Src\Explore\Events\Event.h" />
     <ClInclude Include="Src\Explore\Events\KeyEvent.h" />

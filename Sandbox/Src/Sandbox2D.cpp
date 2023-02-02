@@ -24,20 +24,32 @@ void Sandbox2D::OnDetach()
 
 void Sandbox2D::OnUpdate(Timestep ts)
 {
-	m_CameraController.OnUpdate(ts);
+	EXPLORE_PROFILE_FUNCTION()
 
-	Explore::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f});
-	Explore::RenderCommand::Clear();
+	{
+		EXPLORE_PROFILE_SCOPE("m_CameraController OnUpdate")
+		m_CameraController.OnUpdate(ts);
+	}
 
-	Explore::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	Explore::Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f }, { 0.5f,0.5f }, m_Color);
-	Explore::Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, { 0.5f,0.5f}, m_Color);
-	Explore::Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f }, { 5.0f,5.0f }, m_Texture);
-	Explore::Renderer2D::EndScene();
+	{
+		EXPLORE_PROFILE_SCOPE("Renderer Pre")
+		Explore::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+		Explore::RenderCommand::Clear();
+	}
+
+	{
+		EXPLORE_PROFILE_SCOPE("Renderer Draw")
+		Explore::Renderer2D::BeginScene(m_CameraController.GetCamera());
+		Explore::Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f }, { 0.5f,0.5f }, m_Color);
+		Explore::Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, { 0.5f,0.5f }, m_Color);
+		Explore::Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f }, { 5.0f,5.0f }, m_Texture);
+		Explore::Renderer2D::EndScene();
+	}
 }
 
 void Sandbox2D::OnImGuiRender()
 {
+	EXPLORE_PROFILE_FUNCTION()
 	//change color by UI
 	ImGui::Begin("Setting");
 	ImGui::ColorEdit4("ColorPicker", glm::value_ptr(m_Color));

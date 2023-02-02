@@ -77,26 +77,36 @@ namespace Explore
 	{
 		while (m_Running)
 		{
+			EXPLORE_PROFILE_SCOPE("Application RunLoop")
 			float currentTime = (float)glfwGetTime(); //get time by glfw, it is temporary way
 			m_Timestep = currentTime - m_LastTime;
 			m_LastTime = currentTime;
 
 			if (!m_Minimize)
 			{
-				for (Layer* layer : m_LayerStack)
 				{
-					layer->OnUpdate(m_Timestep);
+					EXPLORE_PROFILE_SCOPE("Layer RunLoop")
+						for (Layer* layer : m_LayerStack)
+						{
+							layer->OnUpdate(m_Timestep);
+						}
+				}
+
+				{
+					EXPLORE_PROFILE_SCOPE("ImGuiRender RunLoop")
+						m_ImGuiLayer->Begin();
+					for (Layer* layer : m_LayerStack)
+					{
+						layer->OnImGuiRender();
+					}
+					m_ImGuiLayer->End();
 				}
 			}
 
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnImGuiRender();
+				EXPLORE_PROFILE_SCOPE("Window SwapBuffer")
+				m_Window->OnUpdate();
 			}
-			m_ImGuiLayer->End();
-
-			m_Window->OnUpdate();
 		}
 	}
 }
