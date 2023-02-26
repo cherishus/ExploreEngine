@@ -40,9 +40,9 @@ void Sandbox2D::OnUpdate(Timestep ts)
 	{
 		EXPLORE_PROFILE_SCOPE("Renderer Draw")
 		Explore::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		Explore::Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f }, { 0.5f,0.5f }, m_Color);
-		Explore::Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, { 0.5f,0.5f }, m_Color);
-		Explore::Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f }, { 5.0f,5.0f }, m_Texture);
+		Explore::Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f },0, { 0.5f,0.5f }, m_Color);
+		Explore::Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, 0,{ 0.5f,0.5f }, m_Color);
+		Explore::Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f },0, { 5.0f,5.0f }, m_Texture);
 		Explore::Renderer2D::EndScene();
 	}
 }

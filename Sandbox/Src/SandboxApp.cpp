@@ -4,6 +4,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include "Sandbox2D.h"
+#include "2DGame/GameLayer.h"
 
 class ExampleLayer : public Explore::Layer
 {
@@ -154,7 +155,8 @@ public:
 	Sandbox() 
 	{
 		//PushLayer(new ExampleLayer);
-		PushLayer(new Sandbox2D);
+		//PushLayer(new Sandbox2D);
+		PushLayer(new GameLayer);
 	}
 
 	~Sandbox() {}

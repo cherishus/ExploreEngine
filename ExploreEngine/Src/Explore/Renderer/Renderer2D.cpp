@@ -71,12 +71,12 @@ namespace Explore
 		EXPLORE_PROFILE_FUNCTION()
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
+	void Renderer2D::DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const glm::vec4& color)
 	{
-		DrawQuad({ position.x,position.y,0.0f }, size, color);
+		DrawQuad({ position.x,position.y,0.0f }, rotation,size, color);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
+	void Renderer2D::DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const glm::vec4& color)
 	{
 		EXPLORE_PROFILE_FUNCTION()
 		s_Renderer2DData->TextureShader->Bind();
@@ -86,19 +86,19 @@ namespace Explore
 		s_Renderer2DData->WhiteTexture->Bind();
 
 		glm::mat4 transform;
-		transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
+		transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, {0.0f,0.0f,1.0f}) * glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
 		s_Renderer2DData->TextureShader->SetMat4("u_ModelMatrix", transform);
 		
 		s_Renderer2DData->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexd(s_Renderer2DData->QuadVertexArray);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture>& texture)
+	void Renderer2D::DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const Ref<Texture>& texture)
 	{
-		DrawQuad({ position.x,position.y,0.0f }, size, texture);
+		DrawQuad({ position.x,position.y,0.0f }, rotation, size, texture);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture>& texture)
+	void Renderer2D::DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const Ref<Texture>& texture)
 	{
 		EXPLORE_PROFILE_FUNCTION()
 		s_Renderer2DData->TextureShader->Bind();
@@ -109,9 +109,31 @@ namespace Explore
 		s_Renderer2DData->TextureShader->SetFloat4("u_color", { 1.0f,1.0f,1.0f,1.0f });
 
 		glm::mat4 transform;
-		transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
+		transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, { 0.0f,0.0f,1.0f }) * glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
 		s_Renderer2DData->TextureShader->SetMat4("u_ModelMatrix", transform);
 		
+		s_Renderer2DData->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexd(s_Renderer2DData->QuadVertexArray);
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<Texture>& texture)
+	{
+		DrawQuad({ position.x,position.y,0 }, rotation, size, color, texture);
+	}
+	
+	void Renderer2D::DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<Texture>& texture)
+	{
+		EXPLORE_PROFILE_FUNCTION()
+		s_Renderer2DData->TextureShader->Bind();
+		texture->Bind();
+		s_Renderer2DData->TextureShader->SetInt("u_Texture", 0);
+
+		s_Renderer2DData->TextureShader->SetFloat4("u_color", color);
+
+		glm::mat4 transform;
+		transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, { 0.0f,0.0f,1.0f }) * glm::scale(glm::mat4(1.0f), { size.x,size.y,1.0f });
+		s_Renderer2DData->TextureShader->SetMat4("u_ModelMatrix", transform);
+
 		s_Renderer2DData->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexd(s_Renderer2DData->QuadVertexArray);
 	}

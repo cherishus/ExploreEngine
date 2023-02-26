@@ -275,7 +275,7 @@ texture相关属性：mipmap多级纹理；filter贴图的过滤方式，决定�
 
 **shaderlibrary:**  本质上是一个shader数组，存放已有的shader，并且提供接口进行访问；
 
-#### 2D Renderer
+#### ==2D Renderer==
 
 plan:
 
@@ -288,4 +288,31 @@ plan:
 **性能分析：**类似于IDE的性能分析工具，包括cpu使用率分析、内存使用分析等；
 
 **关于引擎性能分析模块，**目前打算在引擎内实现一个简单的MiniProfiling，实现范围内时间计算，整体思路包括：抓取数据以及可视化数据；其中抓取时间数据底层本质上采用C++时钟差实现，而可视化采用google tracing实现，提供必要的json文件；
+
+#### Batch Rendering
+
+**含义：**以2d renderer为例，当一次draw call只渲染一个正方形时，则每次draw call绑定必要的buffer数据和shader即可，但当需要渲染1000个正方形时，则渲染提交1000次draw call，显然效率不高；批量渲染即在一次draw call时，渲染出1000个正方形；
+
+**顶点处理：**正常情况下，一次draw call中，buffer存放顶点相对数据，transform设在vertexshader中，但显然在批量渲染中无法使用，因为每个正方形有不用的transform；因次方法是：把transform应用在顶点上，buffer中存放顶点的绝对位置，实现一次draw call渲染多个正方形；
+
+**颜色处理：**通常情况下，渲染一个正方形时，会把颜色设置到fragmentShader中，实现颜色效果；在批量渲染中，考虑每个正方形有不同颜色，因此把颜色值写入vertexBuffer中，在vertexShader中读取并传给fragmentShader；
+
+**贴图处理：**当渲染一个正方形时，会将贴图绑定在默认槽，并在fragmentShader中设置sampler为对应贴图槽即可；当一个draw call渲染多个正方形，首先依旧需要加载多张贴图并绑定贴图槽，以及设置fragmenet中多个sampler的贴图槽，区别在于需要在顶点buffer中添加贴图槽数据，确保不同正方形获取对应的贴图槽；
+
+**索引处理：**当渲染一个正方形时，索引值为6个，而当渲染多个正方形时，索引值数据量等于正方形数*6，且每个正方形索引值与前一个正方形索引值相差4，因此相比于顶点数据，索引值数据在初始化时即可确定，只是索引数量需要根据实际的正方形数获取；
+
+**顶点动态数据：**在opengl中vertexBuffer支持dynamic，即在每帧中可以动态修改顶点buffer，实现每帧顶点数据变化；
+
+```cpp
+//初始化VAO,VBO,IBO
+Renderer::Init();
+//初始化顶点数据指针；
+Renderer::BeginBatch();
+//处理顶点数据，将position和size写入顶点数据中，实现绝对坐标，以及确定颜色和贴图索引数据；同时递增顶点数据指针以及计算索引数量；
+Renderer::DrawQuat();
+//计算顶点数据size，将顶点数据写入VertexBuffer中
+Renderer::EndBatch();
+//draw call
+Renderer::Flush();
+```
 

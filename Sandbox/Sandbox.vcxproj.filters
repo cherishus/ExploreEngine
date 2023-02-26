@@ -21,12 +21,30 @@
     <ClCompile Include="Src\Sandbox2D.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\2DGame\GameLayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\2DGame\Level.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\2DGame\Player.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\2DGame\Random.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\grass.png">
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="assets\textures\basketball.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="assets\textures\Ship.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="assets\textures\Triangle.png">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>
@@ -36,6 +54,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Sandbox2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\2DGame\GameLayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\2DGame\Level.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\2DGame\Player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\2DGame\Random.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
