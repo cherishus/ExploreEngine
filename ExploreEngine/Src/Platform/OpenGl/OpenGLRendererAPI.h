@@ -15,6 +15,6 @@ namespace Explore
 
 		virtual void Clear() override;
 
-		virtual void DrawIndexd(const Ref<VertexArray>& vertexArray) override;
+		virtual void DrawIndexd(const Ref<VertexArray>& vertexArray, uint32_t indexCount) override;
 	};
 }

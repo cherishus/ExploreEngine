@@ -5,6 +5,16 @@
 namespace Explore
 {
 	//--------------------------Vertex Buffer----------------------------------------------------
+	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
+	{
+		EXPLORE_PROFILE_FUNCTION()
+		glGenBuffers(1, &m_VertexBufferID);
+		//bind VBO
+		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBufferID);
+		//move data to GPU cache
+		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW); //dynamic draw, and support that every frame can enter buffer
+	}
+	
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
 	{
 		EXPLORE_PROFILE_FUNCTION()
@@ -31,6 +41,13 @@ namespace Explore
 	{
 		EXPLORE_PROFILE_FUNCTION()
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
+
+	void OpenGLVertexBuffer::SetData(const void* data, uint32_t size)
+	{
+		EXPLORE_PROFILE_FUNCTION()
+		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBufferID);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 	}
 
 	void OpenGLVertexBuffer::SetLayout(BufferLayout layout)

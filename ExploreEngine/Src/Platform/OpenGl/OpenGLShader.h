@@ -23,6 +23,8 @@ namespace Explore
 
 		virtual void SetInt(const std::string& name, int value) override;
 
+		virtual void SetIntArray(const std::string& name, int* value, uint32_t count) override;
+
 		virtual void SetFloat3(const std::string& name, const glm::vec3& value) override;
 
 		virtual void SetFloat4(const std::string& name, const glm::vec4& value) override;
@@ -31,6 +33,8 @@ namespace Explore
 
 		//--------------------------------fuctions for change unifrom-------------------------------
 		void UploadUnifromInt(std::string name, int value);
+
+		void UploadUnifromIntArray(std::string name, int* value, uint32_t count);
 
 		void UploadUnifromFloat(std::string name, float value);
 

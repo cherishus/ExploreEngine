@@ -168,6 +168,12 @@ namespace Explore
 		UploadUnifromInt(name, value);
 	}
 
+	void OpenGLShader::SetIntArray(const std::string& name, int* value, uint32_t count)
+	{
+		EXPLORE_PROFILE_FUNCTION()
+		UploadUnifromIntArray(name, value, count);
+	}
+
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
 	{
 		EXPLORE_PROFILE_FUNCTION()
@@ -190,6 +196,12 @@ namespace Explore
 	{
 		int location = glGetUniformLocation(m_ShaderId, name.c_str());
 		glUniform1i(location, value);
+	}
+
+	void OpenGLShader::UploadUnifromIntArray(std::string name, int* value, uint32_t count)
+	{
+		int location = glGetUniformLocation(m_ShaderId, name.c_str());
+		glUniform1iv(location, count, value);
 	}
 
 	void OpenGLShader::UploadUnifromFloat(std::string name, float value)

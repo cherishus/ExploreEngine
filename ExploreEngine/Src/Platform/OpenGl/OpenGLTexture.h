@@ -21,6 +21,11 @@ namespace Explore
 
 		virtual void SetData(void* data, uint32_t size) override;
 
+		virtual bool operator==(const Texture& other) override
+		{
+			return m_TextureID == ((OpenGLTexture2D&)other).m_TextureID;
+		}
+
 	private:
 		std::string m_Path;
 

@@ -23,7 +23,7 @@ namespace Explore
 
 		virtual void Clear() = 0;
 
-		virtual void DrawIndexd(const Ref<VertexArray>& vertexArray) = 0;
+		virtual void DrawIndexd(const Ref<VertexArray>& vertexArray, uint32_t indexCount) = 0;
 
 		static RendererAPI* Create();
 

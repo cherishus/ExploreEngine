@@ -32,10 +32,10 @@ namespace Explore
 			m_RendererAPI->Clear();
 		}
 
-		static inline void DrawIndexd(const Ref<VertexArray>& vertexArray)
+		static inline void DrawIndexd(const Ref<VertexArray>& vertexArray, uint32_t indexCount = 0)
 		{
 			EXPLORE_PROFILE_FUNCTION()
-			m_RendererAPI->DrawIndexd(vertexArray);
+			m_RendererAPI->DrawIndexd(vertexArray, indexCount);
 		}
 
 	private:

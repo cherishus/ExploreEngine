@@ -39,10 +39,11 @@ void Sandbox2D::OnUpdate(Timestep ts)
 
 	{
 		EXPLORE_PROFILE_SCOPE("Renderer Draw")
+		Explore::Renderer2D::ResetStats();
 		Explore::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		Explore::Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f },0, { 0.5f,0.5f }, m_Color);
-		Explore::Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, 0,{ 0.5f,0.5f }, m_Color);
-		Explore::Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f },0, { 5.0f,5.0f }, m_Texture);
+		Explore::Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f },0, { 1.0f,1.0f }, m_Color);
+		Explore::Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, 0,{ 1.0f,1.0f }, m_Color);
+		Explore::Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f },0, { 5.0f,5.0f }, m_Texture,5.0f);
 		Explore::Renderer2D::EndScene();
 	}
 }
@@ -50,8 +51,13 @@ void Sandbox2D::OnUpdate(Timestep ts)
 void Sandbox2D::OnImGuiRender()
 {
 	EXPLORE_PROFILE_FUNCTION()
-	//change color by UI
 	ImGui::Begin("Setting");
+	//display draw statistics
+	auto Stats = Explore::Renderer2D::GetStats();
+	ImGui::Text("Renderer2D Status:");
+	ImGui::Text("Draw Calls: %d", Stats.DrawCalls);
+	ImGui::Text("Draw Quads: %d", Stats.DrawQuads);
+	//change color by UI
 	ImGui::ColorEdit4("ColorPicker", glm::value_ptr(m_Color));
 	ImGui::End();
 }

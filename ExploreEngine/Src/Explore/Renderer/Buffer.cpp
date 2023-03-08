@@ -6,6 +6,27 @@
 
 namespace Explore
 {
+	Ref<VertexBuffer> VertexBuffer::Create(uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+		{
+			EXPLORE_ASSERT(false, "RendererAPI Is None, Create VertexBuffer Failed!");
+			return nullptr;
+			break;
+		}
+		case RendererAPI::API::OpenGL:
+		{
+			return std::make_shared<OpenGLVertexBuffer>(size);
+			break;
+		}
+		}
+		EXPLORE_ASSERT(false, "RendererAPI Is Unknown, Create VertexBuffer Failed!");
+		return nullptr;
+	}
+
+
 	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
