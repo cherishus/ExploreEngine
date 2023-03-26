@@ -5,7 +5,7 @@ void Player::LoadAssets()
 	m_ShipTexture = Explore::Texture2D::Create("assets/textures/Ship.png");
 }
 
-void Player::OnUpdate(Timestep ts)
+void Player::OnUpdate(Explore::Timestep ts)
 {
 	m_Time += ts;
 

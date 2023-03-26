@@ -33,6 +33,9 @@
     <ClCompile Include="Src\2DGame\Random.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ParticleSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\grass.png">
@@ -66,6 +69,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Src\2DGame\Random.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ParticleSystem.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

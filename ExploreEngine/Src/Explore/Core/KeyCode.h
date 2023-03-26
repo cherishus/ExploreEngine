@@ -1,5 +1,9 @@
 #pragma once
 
+/*Mouse button IDs*/
+#define EXPLORE_MOUSE_BUTTON_LEFT      0
+#define EXPLORE_MOUSE_BUTTON_RIGHT     1
+
 /* The unknown key */
 #define EXPLORE_KEY_UNKNOWN            -1
 

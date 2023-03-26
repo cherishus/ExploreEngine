@@ -77,7 +77,7 @@ void Level::Init()
 	}
 }
 
-void Level::OnUpdate(Timestep ts)
+void Level::OnUpdate(Explore::Timestep ts)
 {
 	m_Player.OnUpdate(ts);
 	

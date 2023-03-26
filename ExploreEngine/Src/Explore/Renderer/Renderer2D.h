@@ -33,7 +33,7 @@ namespace Explore
 			const uint32_t MaxQuads = 10000;
 			const uint32_t MaxVertices = MaxQuads * 4;
 			const uint32_t MaxIndices = MaxQuads * 6;
-			static const uint32_t MaxTextureSlots = 32;
+			static const uint32_t MaxTextureSlots = 32; //direct initialization in stuct for static const member
 
 			Ref<VertexArray>	QuadVertexArray;
 			Ref<VertexBuffer>	QuadVertexBuffer;
@@ -45,6 +45,9 @@ namespace Explore
 			QuadVertex* QuadVertexBufferPtr = nullptr;
 			glm::vec4 QuadPosition[4];
 
+			/*
+			@breif: std::array is a container with fixed size
+			*/
 			std::array<Ref<Texture>, MaxTextureSlots> Textures;
 			uint32_t TextureSlotIndex = 1; //0:white texture
 

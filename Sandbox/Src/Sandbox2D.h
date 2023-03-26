@@ -1,5 +1,6 @@
 #pragma once
 #include "Explore.h"
+#include "ParticleSystem.h"
 
 class Sandbox2D : public Explore::Layer
 {
@@ -12,7 +13,7 @@ public:
 	
 	virtual void OnDetach() override;
 	
-	virtual void OnUpdate(Timestep ts) override;
+	virtual void OnUpdate(Explore::Timestep ts) override;
 	
 	virtual void OnImGuiRender() override;
 	
@@ -24,4 +25,8 @@ private:
 	Explore::Ref<Explore::Texture> m_Texture;
 
 	glm::vec4 m_Color = { 1.0f,0.0f,0.0f,1.0f };
+
+	ParticleProps m_Particle;
+
+	ParticleSystem m_ParticleSystem;
 };

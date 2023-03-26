@@ -13,7 +13,7 @@ public:
 
 	virtual void OnDetach() override;
 
-	virtual void OnUpdate(Timestep ts) override;
+	virtual void OnUpdate(Explore::Timestep ts) override;
 
 	virtual void OnImGuiRender() override;
 

@@ -20,7 +20,7 @@ void GameLayer::OnDetach()
 	Explore::Renderer2D::Shutdown();
 }
 
-void GameLayer::OnUpdate(Timestep ts)
+void GameLayer::OnUpdate(Explore::Timestep ts)
 {
 	//game tick
 	m_Time += ts;

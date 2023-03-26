@@ -20,7 +20,7 @@ class Level
 public:
 	void Init();
 
-	void OnUpdate(Timestep ts);
+	void OnUpdate(Explore::Timestep ts);
 
 	void OnRender();
 	

@@ -132,6 +132,7 @@
     <ClCompile Include="Src\2DGame\Level.cpp" />
     <ClCompile Include="Src\2DGame\Player.cpp" />
     <ClCompile Include="Src\2DGame\Random.cpp" />
+    <ClCompile Include="Src\ParticleSystem.cpp" />
     <ClCompile Include="Src\Sandbox2D.cpp" />
     <ClCompile Include="Src\SandboxApp.cpp" />
   </ItemGroup>
@@ -155,6 +156,7 @@
     <ClInclude Include="Src\2DGame\Random.h" />
     <ClInclude Include="Src\2DGame\Level.h" />
     <ClInclude Include="Src\2DGame\Player.h" />
+    <ClInclude Include="Src\ParticleSystem.h" />
     <ClInclude Include="Src\Sandbox2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

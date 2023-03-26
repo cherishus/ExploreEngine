@@ -6,6 +6,18 @@
 
 namespace Explore
 {
+	struct OrthographicCameraBounds
+	{
+		float Left, Right;
+		float Bottom, Top;
+
+		OrthographicCameraBounds(float L,float R,float B,float T):Left(L),Right(R),Bottom(B),Top(T) {}
+
+		float GetWidth() { return (Right - Left); }
+		
+		float GetHeight() { return (Top - Bottom); }
+	};
+
 	class OrthographicCameraController
 	{
 	public:
@@ -19,6 +31,8 @@ namespace Explore
 
 		OrthographicCamera GetCamera() { return m_Camera; }
 
+		const OrthographicCameraBounds& GetBounds() { return m_Bounds; }
+
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 
@@ -30,6 +44,8 @@ namespace Explore
 		float m_ZoomLevel = 1.0f; //zoom level represents the height
 
 		OrthographicCamera m_Camera; //orthographic camera
+
+		OrthographicCameraBounds m_Bounds;
 
 		bool m_Rotation; //whether control camera rotation or not
 

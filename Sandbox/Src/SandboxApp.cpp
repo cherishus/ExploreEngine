@@ -86,7 +86,7 @@ public:
 		m_AlphaTexture = Explore::Texture2D::Create(path2);
 	}
 
-	void OnUpdate(Timestep ts) override
+	void OnUpdate(Explore::Timestep ts) override
 	{
 		m_CameraController.OnUpdate(ts);
 

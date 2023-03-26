@@ -6,7 +6,7 @@ class Player
 public:
 	void LoadAssets();
 
-	void OnUpdate(Timestep ts);
+	void OnUpdate(Explore::Timestep ts);
 
 	void OnRender();
 
