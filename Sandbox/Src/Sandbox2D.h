@@ -24,6 +24,8 @@ private:
 
 	Explore::Ref<Explore::Texture> m_Texture;
 
+	Explore::Ref<Explore::SubTexture> m_SubTexture;
+
 	glm::vec4 m_Color = { 1.0f,0.0f,0.0f,1.0f };
 
 	ParticleProps m_Particle;

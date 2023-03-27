@@ -1412,6 +1412,7 @@
     </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\Renderer2D.h" />
     <ClInclude Include="Src\Explore\Debug\Instrumentor.h" />
+    <ClInclude Include="Src\Explore\Renderer\SubTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Core\Application.cpp">
@@ -1490,5 +1491,6 @@
       <Filter>ThirdLib\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="Src\Explore\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="Src\Explore\Renderer\SubTexture.cpp" />
   </ItemGroup>
 </Project>

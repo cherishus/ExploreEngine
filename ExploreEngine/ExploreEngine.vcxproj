@@ -166,6 +166,7 @@
     <ClInclude Include="Src\Explore\Renderer\Renderer2D.h" />
     <ClInclude Include="Src\Explore\Renderer\RendererAPI.h" />
     <ClInclude Include="Src\Explore\Renderer\Shader.h" />
+    <ClInclude Include="Src\Explore\Renderer\SubTexture.h" />
     <ClInclude Include="Src\Explore\Renderer\Texture.h" />
     <ClInclude Include="Src\Explore\Renderer\VertexArray.h" />
     <ClInclude Include="Src\Platform\OpenGl\OpenGLBuffer.h" />
@@ -610,6 +611,7 @@
     <ClCompile Include="Src\Explore\Renderer\Renderer2D.cpp" />
     <ClCompile Include="Src\Explore\Renderer\RendererAPI.cpp" />
     <ClCompile Include="Src\Explore\Renderer\Shader.cpp" />
+    <ClCompile Include="Src\Explore\Renderer\SubTexture.cpp" />
     <ClCompile Include="Src\Explore\Renderer\Texture.cpp" />
     <ClCompile Include="Src\Explore\Renderer\VertexArray.cpp" />
     <ClCompile Include="Src\Platform\OpenGl\OpenGLBuffer.cpp" />

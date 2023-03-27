@@ -3,6 +3,7 @@
 #include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
+#include "SubTexture.h"
 
 namespace Explore
 {
@@ -78,6 +79,10 @@ namespace Explore
 		static void DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<Texture>& texture, float tilingFactor = 1.0f);
 
 		static void DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<Texture>& texture,float tilingFactor = 1.0f);
+
+		static void DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<SubTexture>& subTexture, float tilingFactor = 1.0f);
+
+		static void DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<SubTexture>& subTexture, float tilingFactor = 1.0f);
 
 		static void ResetStats();
 

@@ -444,7 +444,7 @@ Renderer::Flush();
 
 ##### 含义：
 
-当加载关卡时可能需要多张贴图(texture/tile)，而OpenGL贴图绑定存在一定数量限制，因此采用batchRendering处理大量贴图时，可能需要多个drawCall，且存在贴图绑定之间切换，存在一定效率问题；考虑到tile本身较小，因此完全可以考虑采用spriteSheet(精灵表单)，本质上将多张贴图（sprite）放置在一张大图上，因此只需要绑定一次大的贴图，计算正确的UV而获取sprite渲染；
+当加载关卡时可能需要多张贴图(texture/tile)，而OpenGL贴图绑定存在一定数量限制，因此采用batchRendering处理大量贴图时，可能需要多个drawCall，且存在贴图绑定之间切换，存在一定效率问题；考虑到tile本身较小，因此完全可以考虑==采用spriteSheet(精灵表单)，本质上将多张贴图（sprite）放置在一张大图上，因此只需要绑定一次大的贴图，计算正确的UV而获取sprite渲染==；
 
 ##### SubTexture:
 

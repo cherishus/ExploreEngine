@@ -142,6 +142,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\game\textures\RPGpack_sheet_2X.png" />
     <Image Include="assets\textures\basketball.jpg" />
     <Image Include="assets\textures\grass.png" />
     <Image Include="assets\textures\Ship.png" />
