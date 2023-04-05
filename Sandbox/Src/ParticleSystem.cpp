@@ -26,7 +26,7 @@ std::uniform_int_distribution<std::mt19937::result_type> TempRandom::s_Distribut
 
 ParticleSystem::ParticleSystem()
 {
-	m_ParticlePool.resize(50);
+	m_ParticlePool.resize(100);
 }
 
 void ParticleSystem::OnUpdate(Explore::Timestep ts)

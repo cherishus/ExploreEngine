@@ -13,7 +13,7 @@ namespace Explore
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Explore Engine");
 
 		virtual ~Application() {}
 
@@ -25,9 +25,13 @@ namespace Explore
 
 		void PushOverlay(Layer* layer);
 
+		void Close();
+
 		inline static Application& Get() { return *s_Instance; }
 
 		inline Window& GetWindow() { return *m_Window; }
+
+		inline ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 	
 	private:
 		bool OnWindowClose(Event& e);

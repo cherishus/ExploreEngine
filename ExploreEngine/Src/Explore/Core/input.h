@@ -17,6 +17,8 @@ namespace Explore
 		inline static bool GetMouseY() { return s_Instance->GetMouseYImpl(); }
 
 	protected:
+		virtual ~Input() = default;
+
 		virtual bool IsKeyPressedImpl(int keycode) = 0;
 
 		virtual bool IsMouseButtonPressedImpl(int button) = 0;

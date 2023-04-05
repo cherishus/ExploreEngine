@@ -27,6 +27,8 @@ namespace Explore
 
 		void OnEvent(Event& e); //deal with event
 
+		void OnResize(float width, float height);
+
 		void SetCamera(const OrthographicCamera& camera) { m_Camera = camera; }
 
 		OrthographicCamera GetCamera() { return m_Camera; }

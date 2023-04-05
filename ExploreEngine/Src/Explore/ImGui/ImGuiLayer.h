@@ -18,13 +18,19 @@ namespace Explore
 
 		virtual void OnDetach() override;
 
+		virtual void OnEvent(Event& e) override;
+
 		virtual void OnImGuiRender() override;
 
 		void Begin();
 
 		void End();
 
+		void SetBolockEvent(bool block) { m_BlockEvent = block; }
+
 	private:
 		float m_Time = 0.0f;
+
+		bool m_BlockEvent = false;
 	};
 }

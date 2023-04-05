@@ -12,12 +12,12 @@ namespace Explore
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(const std::string& name)
 	{
 		EXPLORE_ASSERT(!s_Instance, "Application already exists");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = std::unique_ptr<Window>(Window::Create(WindowProps(name)));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		//m_Window->SetVSync(true);
 
@@ -52,6 +52,11 @@ namespace Explore
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverLay(layer);
+	}
+
+	void Application::Close()
+	{
+		m_Running = false;
 	}
 
 	bool Application::OnWindowClose(Event& e)
@@ -94,7 +99,7 @@ namespace Explore
 
 				{
 					EXPLORE_PROFILE_SCOPE("ImGuiRender RunLoop")
-						m_ImGuiLayer->Begin();
+					m_ImGuiLayer->Begin();
 					for (Layer* layer : m_LayerStack)
 					{
 						layer->OnImGuiRender();

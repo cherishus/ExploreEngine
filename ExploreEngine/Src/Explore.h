@@ -14,6 +14,7 @@
 #include "Explore/Renderer/Renderer.h"
 #include "Explore/Renderer/Renderer2D.h"
 #include "Explore/Renderer/RenderCommand.h"
+#include "Explore/Renderer/FrameBuffer.h"
 #include "Explore/Renderer/Shader.h"
 #include "Explore/Renderer/Texture.h"
 #include "Explore/Renderer//SubTexture.h"

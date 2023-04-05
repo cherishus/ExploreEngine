@@ -56,6 +56,20 @@ namespace Explore
 		ed.Dispatch<WindowResizeEvent>(EXPLORE_BIND_EVENT_FN(OrthographicCameraController::OnWindowResize));
 	}
 
+	void OrthographicCameraController::OnResize(float width, float height)
+	{
+		if (height != 0)
+		{
+			m_AspectRatio = width / height;
+		}
+		else
+		{
+			m_AspectRatio = 1.0f;
+		}
+		m_Bounds = { -m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel };
+		m_Camera.SetProjection(m_Bounds.Left, m_Bounds.Right, m_Bounds.Bottom, m_Bounds.Top);
+	}
+
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 	{
 		m_ZoomLevel -= e.GetYOffset();
@@ -66,19 +80,7 @@ namespace Explore
 
 	bool OrthographicCameraController::OnWindowResize(WindowResizeEvent& e)
 	{
-		//m_ZoomLevel = (float)e.GetHeight() / 900.0f;
-		if (e.GetWidth() != 0)
-		{
-			m_AspectRatio = (float)e.GetHeight() / (float)e.GetWidth();
-		}
-		else
-		{
-			m_AspectRatio = 1.0f;
-		}
-		m_Bounds = { -m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel };
-		m_Camera.SetProjection(m_Bounds.Left, m_Bounds.Right, m_Bounds.Bottom, m_Bounds.Top);
+		OnResize((float)e.GetWidth(), (float)e.GetHeight());
 		return false;
 	}
-
-
 }
