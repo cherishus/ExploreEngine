@@ -35,7 +35,7 @@ namespace Explore
 
 		{
 			EXPLORE_PROFILE_SCOPE("m_CameraController OnUpdate")
-			m_CameraController.OnUpdate(ts);
+			if(m_ViewportFocused) m_CameraController.OnUpdate(ts);
 		}
 
 		{
@@ -150,6 +150,11 @@ namespace Explore
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });
 		ImGui::Begin("Viewport");
+
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+		Application::Get().GetImGuiLayer()->SetBolockEvent(!m_ViewportFocused || !m_ViewportHovered);
+
 		ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 		if (m_ViewportSize != *(glm::vec2*)&viewportSize)
 		{
