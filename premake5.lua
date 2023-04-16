@@ -11,11 +11,13 @@ workspace "ExploreEngine"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
+IncludeDir["spdlog"] = "ExploreEngine/ThirdLib/spdlog/include"
 IncludeDir["GLFW"] = "ExploreEngine/ThirdLib/glfw/include"
 IncludeDir["GLAD"] = "ExploreEngine/ThirdLib/glad/include"
 IncludeDir["ImGui"] = "ExploreEngine/ThirdLib/imgui"
 IncludeDir["glm"] = "ExploreEngine/ThirdLib/glm"
 IncludeDir["stb_image"] = "ExploreEngine/ThirdLib/stb_image"
+IncludeDir["entt"] = "ExploreEngine/ThirdLib/entt"
 
 group "Dependencies"
 include "ExploreEngine/ThirdLib/glfw"
@@ -49,12 +51,13 @@ project "ExploreEngine"
 	includedirs
 	{
 		"%{prj.name}/Src",
-		"%{prj.name}/ThirdLib/spdlog/include",
+		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -95,6 +98,7 @@ project "ExploreEditor"
 	location "ExploreEditor"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -108,10 +112,11 @@ project "ExploreEditor"
 
 	includedirs
 	{
-		"ExploreEngine/ThirdLib/spdlog/include",
+		"%{IncludeDir.spdlog}",
 		"ExploreEngine/Src",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.entt}"
 	}
 
 	links

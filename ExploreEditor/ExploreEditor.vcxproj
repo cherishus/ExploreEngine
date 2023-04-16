@@ -79,10 +79,11 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;Explore_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ExploreEngine\ThirdLib\spdlog\include;..\ExploreEngine\Src;..\ExploreEngine\ThirdLib\glm;..\ExploreEngine\ThirdLib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ExploreEngine\ThirdLib\spdlog\include;..\ExploreEngine\Src;..\ExploreEngine\ThirdLib\glm;..\ExploreEngine\ThirdLib\imgui;..\ExploreEngine\ThirdLib\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,13 +95,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;Explore_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ExploreEngine\ThirdLib\spdlog\include;..\ExploreEngine\Src;..\ExploreEngine\ThirdLib\glm;..\ExploreEngine\ThirdLib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ExploreEngine\ThirdLib\spdlog\include;..\ExploreEngine\Src;..\ExploreEngine\ThirdLib\glm;..\ExploreEngine\ThirdLib\imgui;..\ExploreEngine\ThirdLib\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,13 +115,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EXPLORE_PLATFORM_WINDOWS;Explore_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ExploreEngine\ThirdLib\spdlog\include;..\ExploreEngine\Src;..\ExploreEngine\ThirdLib\glm;..\ExploreEngine\ThirdLib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ExploreEngine\ThirdLib\spdlog\include;..\ExploreEngine\Src;..\ExploreEngine\ThirdLib\glm;..\ExploreEngine\ThirdLib\imgui;..\ExploreEngine\ThirdLib\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -489,3 +489,17 @@ Renderer::Flush();
 既然整个场景都被渲染到了一个纹理上，我们可以简单地通过修改纹理数据创建出一些非常有意思的效果。
 
 大部分后处理离不开一个方法，核处理(kernel or convolution matrix)；它的中心为当前的像素，它会用它的核值乘以周围的像素值，并将结果相加变成一个值。比如锐化/模糊/边缘检测；
+
+#### ECS(entity compoment system)
+
+##### feature:
+
+1）相比于传统的继承方式构建场景中各个entity，ECS采用组件和组合的设计模式去定义entity，每个entity由不同功能的组件组合而成；
+
+2）组件的管理方面，ecs并没有按照entity管理其所有组件，而是采用component array方式去管理同一类型下的所有组件，确保获取同类型一系列组件时提高cpu缓存命中率；且大部分应用场合中，系统只关心一系列相关组件数据，并不关心它们来自哪个entity；
+
+3）entity采用签名方式，去追踪其含有的所有组件；而component array会维护好每个组件索引值以及对应的entity id关系；
+
+4）system和entity一样有对应的签名，表示其所关心的组件类型，不同系统关心着不同类型组件；而system本身会维护着一组entity，这些entity一定是含system所规定的组件的；当 Entity 的签名发生更改（添加或删除 Component 时）或 Entity 被销毁时，则需要更新该 System 正在追踪的 Entity 列表；
+
+文章参考：https://zhuanlan.zhihu.com/p/618971664

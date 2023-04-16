@@ -179,6 +179,33 @@ namespace Explore
 		s_Renderer2DData.Stats.DrawQuads++;
 	}
 
+	void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color)
+	{
+		//batch rendering: use global position and write color to buffer
+		if (s_Renderer2DData.QuadIndexCount >= s_Renderer2DData.MaxIndices || s_Renderer2DData.TextureSlotIndex >= s_Renderer2DData.MaxTextureSlots)
+		{
+			FlushAndReset();
+		}
+
+		const float texIndex = 0.0f; //White Texture
+		const float tilingFactor = 1.0f;
+		const int quadCount = 4;
+		glm::vec2 texCoords[quadCount] = { {0.0f,0.0f},{1.0f,0.0f},{1.0f,1.0f},{0.0f,1.0f} };
+
+		for (int index = 0; index < quadCount; index++)
+		{
+			s_Renderer2DData.QuadVertexBufferPtr->Position = transform * s_Renderer2DData.QuadPosition[index];
+			s_Renderer2DData.QuadVertexBufferPtr->Color = color;
+			s_Renderer2DData.QuadVertexBufferPtr->TexCoord = texCoords[index];
+			s_Renderer2DData.QuadVertexBufferPtr->TexIndex = texIndex;
+			s_Renderer2DData.QuadVertexBufferPtr->TilingFactor = tilingFactor;
+			s_Renderer2DData.QuadVertexBufferPtr++;
+		}
+
+		s_Renderer2DData.QuadIndexCount += 6;
+		s_Renderer2DData.Stats.DrawQuads++;
+	}
+
 	void Renderer2D::DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const Ref<Texture>& texture, float tilingFactor)
 	{
 		DrawQuad({ position.x,position.y,0.0f }, rotation, size, texture, tilingFactor);

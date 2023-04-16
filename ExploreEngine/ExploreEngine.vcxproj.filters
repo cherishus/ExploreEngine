@@ -22,6 +22,9 @@
     <Filter Include="Src\Explore\Renderer">
       <UniqueIdentifier>{8157D787-6DE6-6051-1605-754C027371F7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Explore\Scene">
+      <UniqueIdentifier>{D8966276-44AD-600C-8D24-EC2DF9793194}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Src\Platform">
       <UniqueIdentifier>{011E97C6-ED80-266B-9606-5F218248F2ED}</UniqueIdentifier>
     </Filter>
@@ -61,6 +64,9 @@
       <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="Src\Explore\Core\Application.h">
+      <Filter>Src\Explore\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Core\Base.h">
       <Filter>Src\Explore\Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Explore\Core\Core.h">
@@ -111,6 +117,9 @@
     <ClInclude Include="Src\Explore\Renderer\Buffer.h">
       <Filter>Src\Explore\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Explore\Renderer\FrameBuffer.h">
+      <Filter>Src\Explore\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\GraphicsContext.h">
       <Filter>Src\Explore\Renderer</Filter>
     </ClInclude>
@@ -144,10 +153,22 @@
     <ClInclude Include="Src\Explore\Renderer\VertexArray.h">
       <Filter>Src\Explore\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Explore\Scene\Components.h">
+      <Filter>Src\Explore\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Scene\Entity.h">
+      <Filter>Src\Explore\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Scene\Scene.h">
+      <Filter>Src\Explore\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Platform\OpenGl\OpenGLBuffer.h">
       <Filter>Src\Platform\OpenGl</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\OpenGl\OpenGLContext.h">
+      <Filter>Src\Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\OpenGl\OpenGLFrameBuffer.h">
       <Filter>Src\Platform\OpenGl</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\OpenGl\OpenGLRendererAPI.h">
@@ -1422,8 +1443,6 @@
     <ClInclude Include="ThirdLib\stb_image\stb_image.h">
       <Filter>ThirdLib\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Explore\Renderer\FrameBuffer.h" />
-    <ClInclude Include="Src\Platform\OpenGl\OpenGLFrameBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Core\Application.cpp">
@@ -1445,6 +1464,9 @@
       <Filter>Src\Explore\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="Src\Explore\Renderer\Buffer.cpp">
+      <Filter>Src\Explore\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Explore\Renderer\FrameBuffer.cpp">
       <Filter>Src\Explore\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Explore\Renderer\OrthographicCamera.cpp">
@@ -1477,10 +1499,19 @@
     <ClCompile Include="Src\Explore\Renderer\VertexArray.cpp">
       <Filter>Src\Explore\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Explore\Scene\Entity.cpp">
+      <Filter>Src\Explore\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Explore\Scene\Scene.cpp">
+      <Filter>Src\Explore\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Platform\OpenGl\OpenGLBuffer.cpp">
       <Filter>Src\Platform\OpenGl</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\OpenGl\OpenGLContext.cpp">
+      <Filter>Src\Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\OpenGl\OpenGLFrameBuffer.cpp">
       <Filter>Src\Platform\OpenGl</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\OpenGl\OpenGLRendererAPI.cpp">
@@ -1507,7 +1538,5 @@
     <ClCompile Include="ThirdLib\stb_image\stb_image.cpp">
       <Filter>ThirdLib\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Explore\Renderer\FrameBuffer.cpp" />
-    <ClCompile Include="Src\Platform\OpenGl\OpenGLFrameBuffer.cpp" />
   </ItemGroup>
 </Project>

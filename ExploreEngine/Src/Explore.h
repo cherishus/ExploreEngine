@@ -1,6 +1,6 @@
 #pragma once
 
-//Using by Sandbox Applications
+//Used by ThirdApplication
 #include "Explore/Core/Core.h"
 #include "Explore/Core/Application.h"
 #include "Explore/Core/input.h"
@@ -20,5 +20,10 @@
 #include "Explore/Renderer//SubTexture.h"
 #include "Explore/Renderer/OrthographicCamera.h"
 #include "Explore/Renderer/OrthographicCameraController.h"
+
+//Scene
+#include "Explore/Scene/Scene.h"
+#include "Explore/Scene/Entity.h"
+#include "Explore/Scene/Components.h"
 
 //entry point

@@ -22,6 +22,10 @@ namespace Explore
 		FrameBufferSpecification spec;
 		spec.Width = 1080; spec.Height = 720;
 		m_FrameBuffer = FrameBuffer::Create(spec);
+
+		m_ActiveScene = std::make_shared<Scene>();
+		m_ActiveEntity = m_ActiveScene->CreateEntity("Entity");
+		m_ActiveEntity.AddComponent<SpriteComponent>(glm::vec4{ 0.0f,1.0f,0.0f,1.0f });
 	}
 
 	void EditorLayer::OnDetach()
@@ -33,29 +37,20 @@ namespace Explore
 	{
 		EXPLORE_PROFILE_FUNCTION()
 
-		{
-			EXPLORE_PROFILE_SCOPE("m_CameraController OnUpdate")
-			if(m_ViewportFocused) m_CameraController.OnUpdate(ts);
-		}
+		if(m_ViewportFocused) m_CameraController.OnUpdate(ts);
+		m_FrameBuffer->Bind();
+		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+		RenderCommand::Clear();
 
-		{
-			EXPLORE_PROFILE_SCOPE("Renderer Pre")
-			m_FrameBuffer->Bind();
-			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
-			RenderCommand::Clear();
-		}
-
-		{
-			EXPLORE_PROFILE_SCOPE("Renderer Draw")
-			Renderer2D::ResetStats();
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
-			Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f },0, { 1.0f,1.0f }, m_Color);
-			Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, 0,{ 1.0f,1.0f }, m_Color);
-			Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f },0, { 5.0f,5.0f }, m_Texture,5.0f);
-			Renderer2D::DrawQuad({ 2.0f,0.0f,-0.1f }, 0, { 1.0f,1.0f }, { 1.0f,1.0f,1.0f,1.0f }, m_SubTexture);
-			Renderer2D::EndScene();
-			m_FrameBuffer->UnBind();
-		}
+		Renderer2D::ResetStats();
+		Renderer2D::BeginScene(m_CameraController.GetCamera());
+		//Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f },0, { 1.0f,1.0f }, m_Color);
+		//Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, 0,{ 1.0f,1.0f }, m_Color);
+		//Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f },0, { 5.0f,5.0f }, m_Texture,5.0f);
+		//Renderer2D::DrawQuad({ 2.0f,0.0f,-0.1f }, 0, { 1.0f,1.0f }, { 1.0f,1.0f,1.0f,1.0f }, m_SubTexture);
+		m_ActiveScene->OnUpdate(ts);
+		Renderer2D::EndScene();
+		m_FrameBuffer->UnBind();
 	}
 
 	void EditorLayer::OnImGuiRender()
@@ -145,7 +140,8 @@ namespace Explore
 		ImGui::Text("Renderer2D Status:");
 		ImGui::Text("Draw Calls: %d", Stats.DrawCalls);
 		ImGui::Text("Draw Quads: %d", Stats.DrawQuads);
-		ImGui::ColorEdit4("ColorPicker", glm::value_ptr(m_Color));
+		auto& color = m_ActiveEntity.GetComponent<SpriteComponent>().Color;
+		ImGui::ColorEdit4("ColorPicker", glm::value_ptr(color));
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });

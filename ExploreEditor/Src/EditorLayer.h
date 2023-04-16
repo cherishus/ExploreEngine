@@ -23,9 +23,9 @@ namespace Explore
 	private:
 		OrthographicCameraController m_CameraController;
 
-		Ref<Explore::Texture> m_Texture;
+		Ref<Texture> m_Texture;
 
-		Ref<Explore::SubTexture> m_SubTexture;
+		Ref<SubTexture> m_SubTexture;
 
 		glm::vec4 m_Color = { 1.0f,0.0f,0.0f,1.0f };
 
@@ -36,5 +36,9 @@ namespace Explore
 		bool m_ViewportFocused = false;
 
 		bool m_ViewportHovered = false;
+
+		Ref<Scene> m_ActiveScene;
+
+		Entity m_ActiveEntity;
 	};
 }
