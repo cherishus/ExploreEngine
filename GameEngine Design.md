@@ -503,3 +503,7 @@ Renderer::Flush();
 4）system和entity一样有对应的签名，表示其所关心的组件类型，不同系统关心着不同类型组件；而system本身会维护着一组entity，这些entity一定是含system所规定的组件的；当 Entity 的签名发生更改（添加或删除 Component 时）或 Entity 被销毁时，则需要更新该 System 正在追踪的 Entity 列表；
 
 文章参考：https://zhuanlan.zhihu.com/p/618971664
+
+Entt:
+
+entt作为第三方库，

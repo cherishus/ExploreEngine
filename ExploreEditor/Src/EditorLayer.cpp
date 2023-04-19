@@ -24,8 +24,16 @@ namespace Explore
 		m_FrameBuffer = FrameBuffer::Create(spec);
 
 		m_ActiveScene = std::make_shared<Scene>();
-		m_ActiveEntity = m_ActiveScene->CreateEntity("Entity");
-		m_ActiveEntity.AddComponent<SpriteComponent>(glm::vec4{ 0.0f,1.0f,0.0f,1.0f });
+		m_SpriteEntity = m_ActiveScene->CreateEntity("Sprite Entity");
+		m_SpriteEntity.AddComponent<SpriteComponent>(glm::vec4{ 0.0f,1.0f,0.0f,1.0f });
+
+		m_PrimaryCameraEntity = m_ActiveScene->CreateEntity("Primary Camera Entity");
+		m_PrimaryCameraEntity.AddComponent<CameraComponent>();
+
+		m_SecondCameraEntity = m_ActiveScene->CreateEntity("Second Camera Entity");
+		m_SecondCameraEntity.AddComponent<CameraComponent>();
+		m_SecondCameraEntity.GetComponent<CameraComponent>().bPrimary = false;
+		m_SecondCameraEntity.GetComponent<CameraComponent>().Camera.SetOrthographicSize(2.0f);
 	}
 
 	void EditorLayer::OnDetach()
@@ -43,13 +51,13 @@ namespace Explore
 		RenderCommand::Clear();
 
 		Renderer2D::ResetStats();
-		Renderer2D::BeginScene(m_CameraController.GetCamera());
+		//Renderer2D::BeginScene(m_CameraController.GetCamera());
 		//Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f },0, { 1.0f,1.0f }, m_Color);
 		//Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, 0,{ 1.0f,1.0f }, m_Color);
 		//Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f },0, { 5.0f,5.0f }, m_Texture,5.0f);
 		//Renderer2D::DrawQuad({ 2.0f,0.0f,-0.1f }, 0, { 1.0f,1.0f }, { 1.0f,1.0f,1.0f,1.0f }, m_SubTexture);
 		m_ActiveScene->OnUpdate(ts);
-		Renderer2D::EndScene();
+		//Renderer2D::EndScene();
 		m_FrameBuffer->UnBind();
 	}
 
@@ -140,8 +148,14 @@ namespace Explore
 		ImGui::Text("Renderer2D Status:");
 		ImGui::Text("Draw Calls: %d", Stats.DrawCalls);
 		ImGui::Text("Draw Quads: %d", Stats.DrawQuads);
-		auto& color = m_ActiveEntity.GetComponent<SpriteComponent>().Color;
+		auto& color = m_SpriteEntity.GetComponent<SpriteComponent>().Color;
 		ImGui::ColorEdit4("ColorPicker", glm::value_ptr(color));
+		ImGui::Checkbox("Select CameraB", &m_SwitchCamera);
+		m_PrimaryCameraEntity.GetComponent<CameraComponent>().bPrimary = !m_SwitchCamera;
+		m_SecondCameraEntity.GetComponent<CameraComponent>().bPrimary = m_SwitchCamera;
+		float& OrthoSize = m_SecondCameraEntity.GetComponent<CameraComponent>().Camera.GetOrthophicSize();
+		ImGui::DragFloat("SetCameraSize", &OrthoSize);
+		m_SecondCameraEntity.GetComponent<CameraComponent>().Camera.SetOrthographicSize(OrthoSize);
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });
@@ -157,6 +171,7 @@ namespace Explore
 			m_FrameBuffer->Resize(viewportSize.x, viewportSize.y);
 			m_ViewportSize = { viewportSize.x,viewportSize.y };
 			m_CameraController.OnResize(viewportSize.x, viewportSize.y);
+			m_ActiveScene->OnSetViewportSize(viewportSize.x, viewportSize.y);
 		}
 		uint32_t textureId = m_FrameBuffer->GetColorAttachmentRenderId();
 		ImGui::Image((void*)textureId, ImVec2{ m_ViewportSize.x,m_ViewportSize.y });

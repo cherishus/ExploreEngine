@@ -159,6 +159,7 @@
     <ClInclude Include="Src\Explore\Events\MouseEvent.h" />
     <ClInclude Include="Src\Explore\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Src\Explore\Renderer\Buffer.h" />
+    <ClInclude Include="Src\Explore\Renderer\Camera.h" />
     <ClInclude Include="Src\Explore\Renderer\FrameBuffer.h" />
     <ClInclude Include="Src\Explore\Renderer\GraphicsContext.h" />
     <ClInclude Include="Src\Explore\Renderer\OrthographicCamera.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Src\Explore\Scene\Components.h" />
     <ClInclude Include="Src\Explore\Scene\Entity.h" />
     <ClInclude Include="Src\Explore\Scene\Scene.h" />
+    <ClInclude Include="Src\Explore\Scene\SceneCamera.h" />
     <ClInclude Include="Src\Platform\OpenGl\OpenGLBuffer.h" />
     <ClInclude Include="Src\Platform\OpenGl\OpenGLContext.h" />
     <ClInclude Include="Src\Platform\OpenGl\OpenGLFrameBuffer.h" />
@@ -623,6 +625,7 @@
     <ClCompile Include="Src\Explore\Renderer\VertexArray.cpp" />
     <ClCompile Include="Src\Explore\Scene\Entity.cpp" />
     <ClCompile Include="Src\Explore\Scene\Scene.cpp" />
+    <ClCompile Include="Src\Explore\Scene\SceneCamera.cpp" />
     <ClCompile Include="Src\Platform\OpenGl\OpenGLBuffer.cpp" />
     <ClCompile Include="Src\Platform\OpenGl\OpenGLContext.cpp" />
     <ClCompile Include="Src\Platform\OpenGl\OpenGLFrameBuffer.cpp" />

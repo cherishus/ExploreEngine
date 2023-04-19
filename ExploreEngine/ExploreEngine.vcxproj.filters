@@ -1443,6 +1443,8 @@
     <ClInclude Include="ThirdLib\stb_image\stb_image.h">
       <Filter>ThirdLib\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Explore\Renderer\Camera.h" />
+    <ClInclude Include="Src\Explore\Scene\SceneCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Core\Application.cpp">
@@ -1538,5 +1540,6 @@
     <ClCompile Include="ThirdLib\stb_image\stb_image.cpp">
       <Filter>ThirdLib\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Explore\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

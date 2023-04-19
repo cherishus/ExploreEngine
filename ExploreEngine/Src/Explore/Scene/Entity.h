@@ -1,14 +1,13 @@
 #pragma once
+#include "Scene.h"
 #include "entt.hpp"
 
 namespace Explore
 {
-	class Scene;
-
 	class Entity
 	{
 	public:
-		Entity() = default;
+		Entity() : m_Entity(entt::null), m_Scene(nullptr) {}
 
 		Entity(entt::entity entity, Scene* scene);
 
@@ -32,6 +31,7 @@ namespace Explore
 
 	private:
 		entt::entity m_Entity;
+		
 		Scene* m_Scene;
 	};
 }

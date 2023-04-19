@@ -90,6 +90,19 @@ namespace Explore
 		s_Renderer2DData.TextureSlotIndex = 1;
 	}
 
+	void Renderer2D::BeginScene(Camera& camera, glm::mat4 cameraTrans)
+	{
+		EXPLORE_PROFILE_FUNCTION()
+
+		s_Renderer2DData.TextureShader->Bind();
+		glm::mat4 ProjectionViewMat = camera.GetProjectionMat() * cameraTrans;
+		s_Renderer2DData.TextureShader->SetMat4("u_ProjectionViewMatrix", ProjectionViewMat);
+
+		s_Renderer2DData.QuadIndexCount = 0;
+		s_Renderer2DData.QuadVertexBufferPtr = s_Renderer2DData.QuadVertexBufferBase;
+		s_Renderer2DData.TextureSlotIndex = 1;
+	}
+
 	void Renderer2D::EndScene()
 	{
 		EXPLORE_PROFILE_FUNCTION()

@@ -1,4 +1,5 @@
 #pragma once
+#include "SceneCamera.h"
 #include <string>
 #include "glm/glm.hpp"
 
@@ -26,5 +27,14 @@ namespace Explore
 
 		SpriteComponent() : Color({1.0f,1.0f,1.0f,1.0f}) {}
 		SpriteComponent(const glm::vec4& color) : Color(color) {}
+	};
+
+	struct CameraComponent
+	{
+		SceneCamera Camera;
+		bool bPrimary = true;
+		bool bFixedAspectRatio = false;
+
+		CameraComponent() = default;
 	};
 }

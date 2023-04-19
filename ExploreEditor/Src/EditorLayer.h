@@ -39,6 +39,12 @@ namespace Explore
 
 		Ref<Scene> m_ActiveScene;
 
-		Entity m_ActiveEntity;
+		Entity m_SpriteEntity;
+
+		Entity m_PrimaryCameraEntity;
+
+		Entity m_SecondCameraEntity;
+
+		bool m_SwitchCamera = false;
 	};
 }

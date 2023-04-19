@@ -1,10 +1,11 @@
 #pragma once
-#include "Entity.h"
 #include "Explore/Core/Timestep.h"
 #include "entt.hpp"
 
 namespace Explore
 {
+	class Entity;
+
 	class Scene
 	{
 		friend class Entity;
@@ -17,6 +18,8 @@ namespace Explore
 		Entity CreateEntity(const std::string& name = "Default");
 
 		void OnUpdate(Timestep ts);
+
+		void OnSetViewportSize(float width, float height);
 
 	private:
 		entt::registry m_Registry;

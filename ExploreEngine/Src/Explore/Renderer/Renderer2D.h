@@ -4,6 +4,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "SubTexture.h"
+#include "Camera.h"
 
 namespace Explore
 {
@@ -61,6 +62,8 @@ namespace Explore
 		static void Shutdown();
 
 		static void BeginScene(OrthographicCamera& camera);
+
+		static void BeginScene(Camera& camera, glm::mat4 cameraTrans);
 
 		static void EndScene();
 
