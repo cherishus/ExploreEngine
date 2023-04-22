@@ -95,7 +95,7 @@ namespace Explore
 		EXPLORE_PROFILE_FUNCTION()
 
 		s_Renderer2DData.TextureShader->Bind();
-		glm::mat4 ProjectionViewMat = camera.GetProjectionMat() * cameraTrans;
+		glm::mat4 ProjectionViewMat = camera.GetProjectionMat() * glm::inverse(cameraTrans);
 		s_Renderer2DData.TextureShader->SetMat4("u_ProjectionViewMatrix", ProjectionViewMat);
 
 		s_Renderer2DData.QuadIndexCount = 0;

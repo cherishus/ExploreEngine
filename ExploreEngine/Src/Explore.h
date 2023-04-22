@@ -24,6 +24,7 @@
 //Scene
 #include "Explore/Scene/Scene.h"
 #include "Explore/Scene/Entity.h"
+#include "Explore/Scene/ScriptEntity.h"
 #include "Explore/Scene/Components.h"
 
 //entry point

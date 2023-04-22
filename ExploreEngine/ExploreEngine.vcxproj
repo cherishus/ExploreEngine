@@ -176,6 +176,7 @@
     <ClInclude Include="Src\Explore\Scene\Entity.h" />
     <ClInclude Include="Src\Explore\Scene\Scene.h" />
     <ClInclude Include="Src\Explore\Scene\SceneCamera.h" />
+    <ClInclude Include="Src\Explore\Scene\ScriptEntity.h" />
     <ClInclude Include="Src\Platform\OpenGl\OpenGLBuffer.h" />
     <ClInclude Include="Src\Platform\OpenGl\OpenGLContext.h" />
     <ClInclude Include="Src\Platform\OpenGl\OpenGLFrameBuffer.h" />

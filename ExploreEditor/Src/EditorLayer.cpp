@@ -34,6 +34,36 @@ namespace Explore
 		m_SecondCameraEntity.AddComponent<CameraComponent>();
 		m_SecondCameraEntity.GetComponent<CameraComponent>().bPrimary = false;
 		m_SecondCameraEntity.GetComponent<CameraComponent>().Camera.SetOrthographicSize(2.0f);
+
+		//camera controller script
+		class CameraControllerEntity : public ScriptEntity
+		{
+			virtual void OnUpdate(Timestep ts) override
+			{
+				glm::mat4& transform = GetComponent<TransformComponent>().Transform;
+				float speed = 5.0f;
+				//change the third column (pos) in transform
+				if (Input::IsKeyPressed(EXPLORE_KEY_A))
+				{
+					transform[3][0] -= ts * speed;
+				}
+				if (Input::IsKeyPressed(EXPLORE_KEY_D))
+				{
+					transform[3][0] += ts * speed;
+				}
+				if (Input::IsKeyPressed(EXPLORE_KEY_S))
+				{
+					transform[3][1] -= ts * speed;
+				}
+				if (Input::IsKeyPressed(EXPLORE_KEY_W))
+				{
+					transform[3][1] += ts * speed;
+				}
+			}
+		};
+		m_PrimaryCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraControllerEntity>();
+		m_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraControllerEntity>();
+
 	}
 
 	void EditorLayer::OnDetach()

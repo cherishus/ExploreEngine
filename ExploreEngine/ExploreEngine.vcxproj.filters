@@ -1445,6 +1445,7 @@
     </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\Camera.h" />
     <ClInclude Include="Src\Explore\Scene\SceneCamera.h" />
+    <ClInclude Include="Src\Explore\Scene\ScriptEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Core\Application.cpp">

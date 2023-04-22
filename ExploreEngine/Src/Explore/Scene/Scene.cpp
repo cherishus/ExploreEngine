@@ -16,6 +16,18 @@ namespace Explore
 
 	void Scene::OnUpdate(Timestep ts)
 	{
+		//update script
+		m_Registry.view<NativeScriptComponent>().each([this,ts](entt::entity entity, NativeScriptComponent comp) {
+			if (!comp.Instance)
+			{
+				comp.Instance = comp.CreateIns();
+				comp.Instance->OnCreate(entity,this);
+			}
+			comp.Instance->OnUpdate(ts);
+			comp.Instance->OnDestory();
+			comp.DestoryIns(comp.Instance);
+		});
+
 		//get main camera
 		Camera* MainCamera = nullptr;
 		glm::mat4 CameraTrans;

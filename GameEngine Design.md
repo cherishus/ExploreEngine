@@ -504,6 +504,21 @@ Renderer::Flush();
 
 文章参考：https://zhuanlan.zhihu.com/p/618971664
 
-Entt:
+##### Entt:
 
-entt作为第三方库，
+entt作为第三方库，只需要包含一个头文件即可，它的核心在于注册表，使用注册表创建实体entity，以及对实体进行增/删/查组件操作component，利用view可以获取含某一类型组件的实体列表，类似于ecs中system功能；
+
+```cpp
+//常见api
+auto entity = m_Registry.create();
+T& acomponent = m_Registry.emplace<T>(m_Entity, std::forward<Args>(args)...);
+auto view = m_Registry.view<T>();
+```
+
+##### Camera Entity:
+
+引入相机实体后，可在场景中添加多个相机实体，实现不同相机间的切换；
+
+相机实体一般包含两个组件：Transform/Camera，Transform Component提供相机实体的位置信息，而Camera Component提供相机的投影信息，2D Engine中提供正交信息；
+
+一般在场景中支持修改和提交相机实体信息；

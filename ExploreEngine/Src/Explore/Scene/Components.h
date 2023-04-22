@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneCamera.h"
+#include "ScriptEntity.h"
 #include <string>
 #include "glm/glm.hpp"
 
@@ -36,5 +37,19 @@ namespace Explore
 		bool bFixedAspectRatio = false;
 
 		CameraComponent() = default;
+	};
+
+	struct NativeScriptComponent
+	{
+		ScriptEntity* Instance;
+		std::function<ScriptEntity*()> CreateIns;
+		std::function<void(ScriptEntity*)> DestoryIns;
+
+		template<typename T>
+		void Bind()
+		{
+			CreateIns = []()->ScriptEntity* {return new T(); };
+			DestoryIns = [](ScriptEntity* Ins) {delete Ins; Ins = nullptr; };
+		}
 	};
 }
