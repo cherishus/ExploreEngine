@@ -522,3 +522,16 @@ auto view = m_Registry.view<T>();
 相机实体一般包含两个组件：Transform/Camera，Transform Component提供相机实体的位置信息，而Camera Component提供相机的投影信息，2D Engine中提供正交信息；
 
 一般在场景中支持修改和提交相机实体信息；
+
+#### UI Pannel Design
+
+##### SceneHierarchy Panel:
+
+场景列表，展示当前场景中所有实体信息，支持选中、展示Property Panel、以及Add/Remove Entity；
+
+Entity UI的实现，采用ImGui::TreeNodeEx；
+
+##### Property Panel:
+
+属性列表，展示选中实体的component信息，支持重命名、修改每个component的相关属性、以及Add/Remove Component；
+

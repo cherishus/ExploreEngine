@@ -132,10 +132,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Src\EditorLayer.h" />
+    <ClInclude Include="Src\Panels\SceneHierarchyPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\EditorLayer.cpp" />
     <ClCompile Include="Src\ExploreEditorApp.cpp" />
+    <ClCompile Include="Src\Panels\SceneHierarchyPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExploreEngine\ExploreEngine.vcxproj">

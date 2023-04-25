@@ -1,5 +1,6 @@
 #pragma once
 #include "Explore.h"
+#include "Panels/SceneHierarchyPanel.h"
 
 namespace Explore 
 {
@@ -46,5 +47,7 @@ namespace Explore
 		Entity m_SecondCameraEntity;
 
 		bool m_SwitchCamera = false;
+
+		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};
 }

@@ -29,6 +29,14 @@ namespace Explore
 			m_Scene->m_Registry.remove<T>(m_Entity);
 		}
 
+		operator bool() { return m_Entity != entt::null; }
+
+		operator int32_t() { return int32_t(m_Entity); }
+
+		bool operator==(const Entity& entity) { return m_Entity == entity.m_Entity && m_Scene == entity.m_Scene; }
+
+		bool operator!=(const Entity& entity) { return !(*this == entity); }
+
 	private:
 		entt::entity m_Entity;
 		

@@ -27,10 +27,10 @@ namespace Explore
 		m_SpriteEntity = m_ActiveScene->CreateEntity("Sprite Entity");
 		m_SpriteEntity.AddComponent<SpriteComponent>(glm::vec4{ 0.0f,1.0f,0.0f,1.0f });
 
-		m_PrimaryCameraEntity = m_ActiveScene->CreateEntity("Primary Camera Entity");
+		m_PrimaryCameraEntity = m_ActiveScene->CreateEntity("CameraA Entity");
 		m_PrimaryCameraEntity.AddComponent<CameraComponent>();
 
-		m_SecondCameraEntity = m_ActiveScene->CreateEntity("Second Camera Entity");
+		m_SecondCameraEntity = m_ActiveScene->CreateEntity("CameraB Entity");
 		m_SecondCameraEntity.AddComponent<CameraComponent>();
 		m_SecondCameraEntity.GetComponent<CameraComponent>().bPrimary = false;
 		m_SecondCameraEntity.GetComponent<CameraComponent>().Camera.SetOrthographicSize(2.0f);
@@ -64,6 +64,7 @@ namespace Explore
 		m_PrimaryCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraControllerEntity>();
 		m_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraControllerEntity>();
 
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach()
@@ -79,15 +80,14 @@ namespace Explore
 		m_FrameBuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		RenderCommand::Clear();
-
 		Renderer2D::ResetStats();
 		//Renderer2D::BeginScene(m_CameraController.GetCamera());
 		//Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f },0, { 1.0f,1.0f }, m_Color);
 		//Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, 0,{ 1.0f,1.0f }, m_Color);
 		//Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f },0, { 5.0f,5.0f }, m_Texture,5.0f);
 		//Renderer2D::DrawQuad({ 2.0f,0.0f,-0.1f }, 0, { 1.0f,1.0f }, { 1.0f,1.0f,1.0f,1.0f }, m_SubTexture);
-		m_ActiveScene->OnUpdate(ts);
 		//Renderer2D::EndScene();
+		m_ActiveScene->OnUpdate(ts);
 		m_FrameBuffer->UnBind();
 	}
 
@@ -207,6 +207,8 @@ namespace Explore
 		ImGui::Image((void*)textureId, ImVec2{ m_ViewportSize.x,m_ViewportSize.y });
 		ImGui::End();
 		ImGui::PopStyleVar();
+
+		m_SceneHierarchyPanel.OnImGuiRender();
 
         ImGui::End();
 	}
