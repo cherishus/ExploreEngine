@@ -28,8 +28,6 @@ namespace Explore
 
 		Ref<SubTexture> m_SubTexture;
 
-		glm::vec4 m_Color = { 1.0f,0.0f,0.0f,1.0f };
-
 		Ref<FrameBuffer> m_FrameBuffer;
 
 		glm::vec2 m_ViewportSize = {0,0};
@@ -45,8 +43,6 @@ namespace Explore
 		Entity m_PrimaryCameraEntity;
 
 		Entity m_SecondCameraEntity;
-
-		bool m_SwitchCamera = false;
 
 		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};

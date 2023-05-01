@@ -22,6 +22,8 @@ namespace Explore
 
 		void DrawComponentNode(Entity& entity);
 
+		static void DrawVec3(const std::string& label, glm::vec3& value, float resetVal = 0.0f, float columnWidth = 100.0f);
+
 	private:
 		Ref<Scene> m_Context;
 

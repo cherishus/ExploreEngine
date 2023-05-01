@@ -10,7 +10,7 @@ namespace Explore
 	{
 		Entity entity(m_Registry.create(), this);
 		entity.AddComponent<TagComponent>(name);
-		entity.AddComponent<TransformComponent>(glm::mat4(1.0f));
+		entity.AddComponent<TransformComponent>(glm::vec3(1.0f));
 		return entity;
 	}
 
@@ -38,7 +38,7 @@ namespace Explore
 			if (CameraComp.bPrimary)
 			{
 				MainCamera = &CameraComp.Camera;
-				CameraTrans = TransformComp.Transform;
+				CameraTrans = TransformComp.GetTransform();
 				break;
 			}
 		}
@@ -48,12 +48,12 @@ namespace Explore
 		{
 			Renderer2D::BeginScene(*MainCamera, CameraTrans);
 
-			auto view = m_Registry.view<TransformComponent, SpriteComponent>();
+			auto view = m_Registry.view<TransformComponent, SpriteRenderedComponent>();
 			for (auto entity : view)
 			{
 				TransformComponent& transformComp = view.get<TransformComponent>(entity);
-				SpriteComponent& spriteComp = view.get<SpriteComponent>(entity);
-				Renderer2D::DrawQuad(transformComp.Transform, spriteComp.Color);
+				SpriteRenderedComponent& spriteComp = view.get<SpriteRenderedComponent>(entity);
+				Renderer2D::DrawQuad(transformComp.GetTransform(), spriteComp.Color);
 			}
 
 			Renderer2D::EndScene();

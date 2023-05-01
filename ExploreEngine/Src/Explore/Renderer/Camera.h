@@ -3,6 +3,9 @@
 
 namespace Explore
 {
+	/*
+	*@ breif: simple camera class, only containing projection matrix
+	*/
 	class Camera
 	{
 	public:

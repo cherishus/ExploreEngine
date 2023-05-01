@@ -3,31 +3,46 @@
 #include "ScriptEntity.h"
 #include <string>
 #include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 namespace Explore
 {
+	/*
+	* @brief: components for entity
+	*/
 	struct TagComponent
 	{
-		std::string TagName;
+		std::string TagName = "Default Entity";
 
-		TagComponent() : TagName("Default") {}
 		TagComponent(const std::string tagName) : TagName(tagName) {}
 	};
 
 	struct TransformComponent
 	{
-		glm::mat4 Transform;
+		glm::vec3 Translation = {0.0f,0.0f,0.0f};
+		glm::vec3 Rotation = {0.0f,0.0f,0.0f};
+		glm::vec3 Scale = {1.0f,1.0f,1.0f};
 
-		TransformComponent() : Transform(glm::mat4(1.0f)) {}
-		TransformComponent(const glm::mat4& transform) : Transform(transform) {}
+		TransformComponent(const glm::vec3& translation) 
+			: Translation(translation)
+		{}
+
+		glm::mat4 GetTransform() {
+			glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), Rotation.x, { 1.0f,0.0f,0.0f })
+				* glm::rotate(glm::mat4(1.0f), Rotation.y, { 0.0f,1.0f,0.0f })
+				* glm::rotate(glm::mat4(1.0f), Rotation.z, { 0.0f,0.0f,1.0f });
+
+			return glm::translate(glm::mat4(1.0f), Translation)
+				* rotation
+				* glm::scale(glm::mat4(1.0f), Scale);
+		}
 	};
 
-	struct SpriteComponent
+	struct SpriteRenderedComponent
 	{
-		glm::vec4 Color;
+		glm::vec4 Color = { 1.0f,1.0f,1.0f,1.0f };
 
-		SpriteComponent() : Color({1.0f,1.0f,1.0f,1.0f}) {}
-		SpriteComponent(const glm::vec4& color) : Color(color) {}
+		SpriteRenderedComponent(const glm::vec4& color) : Color(color) {}
 	};
 
 	struct CameraComponent

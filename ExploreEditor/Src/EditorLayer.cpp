@@ -25,7 +25,7 @@ namespace Explore
 
 		m_ActiveScene = std::make_shared<Scene>();
 		m_SpriteEntity = m_ActiveScene->CreateEntity("Sprite Entity");
-		m_SpriteEntity.AddComponent<SpriteComponent>(glm::vec4{ 0.0f,1.0f,0.0f,1.0f });
+		m_SpriteEntity.AddComponent<SpriteRenderedComponent>(glm::vec4{ 0.0f,1.0f,0.0f,1.0f });
 
 		m_PrimaryCameraEntity = m_ActiveScene->CreateEntity("CameraA Entity");
 		m_PrimaryCameraEntity.AddComponent<CameraComponent>();
@@ -40,24 +40,24 @@ namespace Explore
 		{
 			virtual void OnUpdate(Timestep ts) override
 			{
-				glm::mat4& transform = GetComponent<TransformComponent>().Transform;
+				glm::vec3& translation = GetComponent<TransformComponent>().Translation;
 				float speed = 5.0f;
 				//change the third column (pos) in transform
 				if (Input::IsKeyPressed(EXPLORE_KEY_A))
 				{
-					transform[3][0] -= ts * speed;
+					translation.x -= ts * speed;
 				}
 				if (Input::IsKeyPressed(EXPLORE_KEY_D))
 				{
-					transform[3][0] += ts * speed;
+					translation.x += ts * speed;
 				}
 				if (Input::IsKeyPressed(EXPLORE_KEY_S))
 				{
-					transform[3][1] -= ts * speed;
+					translation.y -= ts * speed;
 				}
 				if (Input::IsKeyPressed(EXPLORE_KEY_W))
 				{
-					transform[3][1] += ts * speed;
+					translation.y += ts * speed;
 				}
 			}
 		};
@@ -178,14 +178,6 @@ namespace Explore
 		ImGui::Text("Renderer2D Status:");
 		ImGui::Text("Draw Calls: %d", Stats.DrawCalls);
 		ImGui::Text("Draw Quads: %d", Stats.DrawQuads);
-		auto& color = m_SpriteEntity.GetComponent<SpriteComponent>().Color;
-		ImGui::ColorEdit4("ColorPicker", glm::value_ptr(color));
-		ImGui::Checkbox("Select CameraB", &m_SwitchCamera);
-		m_PrimaryCameraEntity.GetComponent<CameraComponent>().bPrimary = !m_SwitchCamera;
-		m_SecondCameraEntity.GetComponent<CameraComponent>().bPrimary = m_SwitchCamera;
-		float& OrthoSize = m_SecondCameraEntity.GetComponent<CameraComponent>().Camera.GetOrthophicSize();
-		ImGui::DragFloat("SetCameraSize", &OrthoSize);
-		m_SecondCameraEntity.GetComponent<CameraComponent>().Camera.SetOrthographicSize(OrthoSize);
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });

@@ -7,9 +7,15 @@ namespace Explore
 	class Entity
 	{
 	public:
-		Entity() : m_Entity(entt::null), m_Scene(nullptr) {}
+		Entity() = default;
 
 		Entity(entt::entity entity, Scene* scene);
+
+		template<typename T>
+		bool HasComponent()
+		{
+			return m_Scene->m_Registry.try_get<T>(m_Entity) != nullptr;
+		}
 
 		template<typename T, typename... Args>
 		T& AddComponent(Args&&... args)
@@ -38,8 +44,8 @@ namespace Explore
 		bool operator!=(const Entity& entity) { return !(*this == entity); }
 
 	private:
-		entt::entity m_Entity;
+		entt::entity m_Entity = entt::null;
 		
-		Scene* m_Scene;
+		Scene* m_Scene = nullptr;
 	};
 }
