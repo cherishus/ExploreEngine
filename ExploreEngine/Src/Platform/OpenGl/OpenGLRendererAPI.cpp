@@ -35,6 +35,6 @@ namespace Explore
 		EXPLORE_PROFILE_FUNCTION()
 		vertexArray->Bind();
 		uint32_t count = indexCount == 0 ? vertexArray->GetIndexBuffer()->GetCount() : indexCount;
-		glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
 	}
 }

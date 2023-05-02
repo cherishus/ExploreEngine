@@ -37,6 +37,8 @@ namespace Explore
 
 		operator bool() { return m_Entity != entt::null; }
 
+		operator entt::entity() { return m_Entity; }
+
 		operator int32_t() { return int32_t(m_Entity); }
 
 		bool operator==(const Entity& entity) { return m_Entity == entity.m_Entity && m_Scene == entity.m_Scene; }

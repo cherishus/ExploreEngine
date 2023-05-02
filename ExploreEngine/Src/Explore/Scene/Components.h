@@ -14,6 +14,8 @@ namespace Explore
 	{
 		std::string TagName = "Default Entity";
 
+		TagComponent() = default;
+
 		TagComponent(const std::string tagName) : TagName(tagName) {}
 	};
 
@@ -22,6 +24,8 @@ namespace Explore
 		glm::vec3 Translation = {0.0f,0.0f,0.0f};
 		glm::vec3 Rotation = {0.0f,0.0f,0.0f};
 		glm::vec3 Scale = {1.0f,1.0f,1.0f};
+
+		TransformComponent() = default;
 
 		TransformComponent(const glm::vec3& translation) 
 			: Translation(translation)
@@ -42,6 +46,8 @@ namespace Explore
 	{
 		glm::vec4 Color = { 1.0f,1.0f,1.0f,1.0f };
 
+		SpriteRenderedComponent() = default;
+
 		SpriteRenderedComponent(const glm::vec4& color) : Color(color) {}
 	};
 
@@ -59,6 +65,8 @@ namespace Explore
 		ScriptEntity* Instance;
 		std::function<ScriptEntity*()> CreateIns;
 		std::function<void(ScriptEntity*)> DestoryIns;
+
+		NativeScriptComponent() = default;
 
 		template<typename T>
 		void Bind()

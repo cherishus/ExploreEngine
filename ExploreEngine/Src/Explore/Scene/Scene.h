@@ -6,6 +6,9 @@ namespace Explore
 {
 	class Entity;
 
+	/*
+	*@ brief: Scene uses entt to manage all entitys, and updates itself in tick 
+	*/
 	class Scene
 	{
 		friend class Entity;
@@ -17,6 +20,8 @@ namespace Explore
 		~Scene() = default;
 
 		Entity CreateEntity(const std::string& name = "Default");
+
+		void DestroyEntity(Entity entity);
 
 		void OnUpdate(Timestep ts);
 

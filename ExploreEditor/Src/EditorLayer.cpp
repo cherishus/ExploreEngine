@@ -83,7 +83,6 @@ namespace Explore
 		Renderer2D::ResetStats();
 		//Renderer2D::BeginScene(m_CameraController.GetCamera());
 		//Renderer2D::DrawQuad({ -1.0f,0.5f,-0.1f },0, { 1.0f,1.0f }, m_Color);
-		//Renderer2D::DrawQuad({ 0.5f,0.5f,-0.1f }, 0,{ 1.0f,1.0f }, m_Color);
 		//Renderer2D::DrawQuad({ 0.0f,0.0f,-0.1f },0, { 5.0f,5.0f }, m_Texture,5.0f);
 		//Renderer2D::DrawQuad({ 2.0f,0.0f,-0.1f }, 0, { 1.0f,1.0f }, { 1.0f,1.0f,1.0f,1.0f }, m_SubTexture);
 		//Renderer2D::EndScene();
