@@ -172,20 +172,20 @@ namespace Explore
             ImGui::EndMenuBar();
         }
 
-		ImGui::Begin("Setting");
+		//Stats
+		ImGui::Begin("Stats");
 		auto Stats = Renderer2D::GetStats();
-		ImGui::Text("Renderer2D Status:");
+		ImGui::Text("Renderer2D Stats:");
 		ImGui::Text("Draw Calls: %d", Stats.DrawCalls);
 		ImGui::Text("Draw Quads: %d", Stats.DrawQuads);
 		ImGui::End();
 
+		//Viewport
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });
 		ImGui::Begin("Viewport");
-
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
 		Application::Get().GetImGuiLayer()->SetBolockEvent(!m_ViewportFocused || !m_ViewportHovered);
-
 		ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 		if (m_ViewportSize != *(glm::vec2*)&viewportSize)
 		{
@@ -200,7 +200,6 @@ namespace Explore
 		ImGui::PopStyleVar();
 
 		m_SceneHierarchyPanel.OnImGuiRender();
-
         ImGui::End();
 	}
 
