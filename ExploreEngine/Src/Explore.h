@@ -26,5 +26,6 @@
 #include "Explore/Scene/Entity.h"
 #include "Explore/Scene/ScriptEntity.h"
 #include "Explore/Scene/Components.h"
+#include "Explore/Scene/SceneSerializer.h"
 
 //entry point

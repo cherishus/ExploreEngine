@@ -24,6 +24,8 @@ namespace Explore
 		m_FrameBuffer = FrameBuffer::Create(spec);
 
 		m_ActiveScene = std::make_shared<Scene>();
+
+#if 0
 		m_SpriteEntity = m_ActiveScene->CreateEntity("Sprite Entity");
 		m_SpriteEntity.AddComponent<SpriteRenderedComponent>(glm::vec4{ 0.0f,1.0f,0.0f,1.0f });
 
@@ -63,8 +65,12 @@ namespace Explore
 		};
 		m_PrimaryCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraControllerEntity>();
 		m_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraControllerEntity>();
+#endif
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
+		SceneSerializer serializer(m_ActiveScene);
+		serializer.Deserialize("assets/scenes/example.scene");
 	}
 
 	void EditorLayer::OnDetach()

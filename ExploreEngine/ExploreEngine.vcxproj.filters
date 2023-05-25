@@ -117,6 +117,9 @@
     <ClInclude Include="Src\Explore\Renderer\Buffer.h">
       <Filter>Src\Explore\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Explore\Renderer\Camera.h">
+      <Filter>Src\Explore\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Explore\Renderer\FrameBuffer.h">
       <Filter>Src\Explore\Renderer</Filter>
     </ClInclude>
@@ -160,6 +163,12 @@
       <Filter>Src\Explore\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Src\Explore\Scene\Scene.h">
+      <Filter>Src\Explore\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Scene\SceneCamera.h">
+      <Filter>Src\Explore\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Explore\Scene\ScriptEntity.h">
       <Filter>Src\Explore\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\OpenGl\OpenGLBuffer.h">
@@ -1443,9 +1452,7 @@
     <ClInclude Include="ThirdLib\stb_image\stb_image.h">
       <Filter>ThirdLib\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Explore\Renderer\Camera.h" />
-    <ClInclude Include="Src\Explore\Scene\SceneCamera.h" />
-    <ClInclude Include="Src\Explore\Scene\ScriptEntity.h" />
+    <ClInclude Include="Src\Explore\Scene\SceneSerializer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Explore\Core\Application.cpp">
@@ -1508,6 +1515,9 @@
     <ClCompile Include="Src\Explore\Scene\Scene.cpp">
       <Filter>Src\Explore\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Explore\Scene\SceneCamera.cpp">
+      <Filter>Src\Explore\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Platform\OpenGl\OpenGLBuffer.cpp">
       <Filter>Src\Platform\OpenGl</Filter>
     </ClCompile>
@@ -1541,6 +1551,6 @@
     <ClCompile Include="ThirdLib\stb_image\stb_image.cpp">
       <Filter>ThirdLib\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Explore\Scene\SceneCamera.cpp" />
+    <ClCompile Include="Src\Explore\Scene\SceneSerializer.cpp" />
   </ItemGroup>
 </Project>

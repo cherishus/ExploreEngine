@@ -18,11 +18,13 @@ IncludeDir["ImGui"] = "ExploreEngine/ThirdLib/imgui"
 IncludeDir["glm"] = "ExploreEngine/ThirdLib/glm"
 IncludeDir["stb_image"] = "ExploreEngine/ThirdLib/stb_image"
 IncludeDir["entt"] = "ExploreEngine/ThirdLib/entt"
+IncludeDir["yaml_cpp"] = "ExploreEngine/ThirdLib/yaml-cpp/include"
 
 group "Dependencies"
 include "ExploreEngine/ThirdLib/glfw"
 include "ExploreEngine/ThirdLib/glad"
 include "ExploreEngine/ThirdLib/imgui"
+include "ExploreEngine/ThirdLib/yaml-cpp"
 group ""
 
 project "ExploreEngine"
@@ -57,7 +59,8 @@ project "ExploreEngine"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yaml_cpp}"
 	}
 
 	links
@@ -65,6 +68,7 @@ project "ExploreEngine"
 		"GLFW",
 		"GLAD",
 		"ImGui",
+		"yaml-cpp",
 		"opengl32.lib"
 	}
 

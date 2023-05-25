@@ -533,5 +533,13 @@ Entity UI的实现，采用ImGui::TreeNodeEx；
 
 ##### Property Panel:
 
-属性列表，展示选中实体的component信息，支持重命名、修改每个component的相关属性、以及Add/Remove Component；
+属性列表，展示选中实体的component信息，支持重命名tag、修改每个component的相关属性、以及Add/Remove Component；
+
+UI的风格修改：涉及到color-style，还有一些Imgui component的属性修改；
+
+#### Serialization & Deserialization
+
+场景的序列化：本质上将场景内实体及其所含组件的必要信息采集并存放于一个文件中，即存档；考虑采用文本文件yaml格式，可读性和可操作性强；
+
+反序列化：序列化逆过程，解析文件并生成对应的场景实体和组件，即加载；
 
