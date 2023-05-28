@@ -20,12 +20,13 @@ namespace Explore
 		m_SubTexture = SubTexture::CrereFromTexture(m_Texture, { 128,128 }, { 2,2 }, { 1,1 });
 	
 		FrameBufferSpecification spec;
+		spec.Attachment = { FrameBufferTextureFormat::RGBA8,FrameBufferTextureFormat::RGBA8,FrameBufferTextureFormat::DEPTH24STENCIL8 };
 		spec.Width = 1080; spec.Height = 720;
 		m_FrameBuffer = FrameBuffer::Create(spec);
 
 		m_ActiveScene = std::make_shared<Scene>();
 
-#if 0
+#if 1
 		m_SpriteEntity = m_ActiveScene->CreateEntity("Sprite Entity");
 		m_SpriteEntity.AddComponent<SpriteRenderedComponent>(glm::vec4{ 0.0f,1.0f,0.0f,1.0f });
 
@@ -69,8 +70,8 @@ namespace Explore
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 
-		SceneSerializer serializer(m_ActiveScene);
-		serializer.Deserialize("assets/scenes/example.scene");
+		//SceneSerializer serializer(m_ActiveScene);
+		//serializer.Deserialize("assets/scenes/example.scene");
 	}
 
 	void EditorLayer::OnDetach()
@@ -200,7 +201,7 @@ namespace Explore
 			m_CameraController.OnResize(viewportSize.x, viewportSize.y);
 			m_ActiveScene->OnSetViewportSize(viewportSize.x, viewportSize.y);
 		}
-		uint32_t textureId = m_FrameBuffer->GetColorAttachmentRenderId();
+		uint32_t textureId = m_FrameBuffer->GetColorAttachmentRenderId(2);
 		ImGui::Image((void*)textureId, ImVec2{ m_ViewportSize.x,m_ViewportSize.y });
 		ImGui::End();
 		ImGui::PopStyleVar();

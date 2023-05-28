@@ -543,3 +543,14 @@ UI的风格修改：涉及到color-style，还有一些Imgui component的属性�
 
 反序列化：序列化逆过程，解析文件并生成对应的场景实体和组件，即加载；
 
+#### MousePicking
+
+##### 实现思路：
+
+渲染整个场景，在fragment时并不是计算每个像素的颜色，而是计算每个像素此时所在的entity id，生成一张贴图；当用户点击屏幕时，计算对应的uv去取值；在渲染层，仍然采用一次render pass，但会在frambuffer输出两个结果，一个代表颜色，一个代表entity id；
+
+##### MultiRenderTarget:
+
+一个renderPass后的结果可以有多个，即multiRenderTarget；通常情况下renderpass需要绑定frameBuffer，而frameBuffer可以绑定多个附件，包括多个colorAttachment，实现multiRenderTarget;
+
+对于openGL，可以在fragment shader中指定多个输出out，对应不同的附件上；

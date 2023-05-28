@@ -21,7 +21,8 @@ void main()
 
 #type fragment
 #version 330 core
-out vec4 FragColor;
+layout (location = 0) out vec4 FragColor;
+layout (location = 1) out vec4 Color2;
 in vec4 vColor;
 in vec2 vTexCoor;
 in float vTexIndex;
@@ -32,4 +33,5 @@ uniform sampler2D u_Textures[32];
 void main()
 {
 	FragColor = texture(u_Textures[int(vTexIndex)],vTexCoor * vTilingFactor) * vColor;
+	Color2 = vec4(1.0f,0.0f,0.0f,1.0f);
 };

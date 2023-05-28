@@ -18,7 +18,7 @@ namespace Explore
 
 		virtual FrameBufferSpecification& GetSpec() override { return m_Spec; }
 
-		virtual uint32_t GetColorAttachmentRenderId() override { return m_ColorAttachmentId; }
+		virtual uint32_t GetColorAttachmentRenderId(int index = 0) override { return m_ColorAttachmentIds[index]; }
 
 	private:
 		void InValidate();
@@ -26,8 +26,14 @@ namespace Explore
 	private:
 		uint32_t m_RendererId = 0;
 
-		uint32_t m_ColorAttachmentId = 0, m_DepthAttachmentId = 0;
+		std::vector<uint32_t> m_ColorAttachmentIds;
 
+		uint32_t m_DepthAttachmentId;
+		
 		FrameBufferSpecification m_Spec;
+
+		std::vector<FrameBufferTextureSpecification> m_ColorTextureSpecifications;
+
+		FrameBufferTextureSpecification m_DepthTextureSpecification = FrameBufferTextureFormat::None;
 	};
 }
